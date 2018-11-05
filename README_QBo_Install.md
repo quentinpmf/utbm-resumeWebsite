@@ -68,9 +68,13 @@ Création du projet symfony dans /var/www/html : `composer create-project symfon
 (Si jamais la commande ci-dessus ne marche pas, passer en version php-xml7.2 avec : `apt-get install php7.2-xml`) <br>
 De cette manière, l'architecture sera crée directement dans /var/www/html et partagée sur Windows via le partage de dossier Virtualbox. 
 
-dans le dossier my-cv-project, on lance le serveur web avec : <br>
+Dans le dossier my-cv-project, on lance le serveur web avec : <br>
 `composer require server --dev` <br>
-puis on accède a l'application via : 127.0.0.1:8000
+OU POUR LA la VM : <br>
+`su -` <br>
+`cd /var/www/html/my-cv-project` <br>
+`php bin/console server:start 0.0.0.0:8000` <br>
+puis on accède a l'application via : 127.0.0.1:8000 <br>
 
 <h4>Création du repository github</h4>
 https://github.com/quentinpmf/siteWebCreationCV vide pour l'instant
