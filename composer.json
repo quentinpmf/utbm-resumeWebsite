@@ -6,7 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "fzaninotto/faker": "^1.8",
-        "sensio/framework-extra-bundle": "^5.1",
+        "sensio/framework-extra-bundle": "^5.2",
         "symfony/asset": "4.1.*",
         "symfony/console": "4.1.*",
         "symfony/expression-language": "4.1.*",
@@ -18,7 +18,7 @@
         "symfony/process": "4.1.*",
         "symfony/security-bundle": "4.1.*",
         "symfony/serializer-pack": "*",
-        "symfony/swiftmailer-bundle": "^3.1",
+        "symfony/swiftmailer-bundle": "^3.2",
         "symfony/translation": "4.1.*",
         "symfony/twig-bundle": "4.1.*",
         "symfony/validator": "4.1.*",
@@ -27,9 +27,10 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "sensiolabs/security-checker": "^5.0",
         "symfony/debug-pack": "*",
         "symfony/dotenv": "4.1.*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.9",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*",
         "symfony/web-server-bundle": "4.1.*"
@@ -61,7 +62,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
