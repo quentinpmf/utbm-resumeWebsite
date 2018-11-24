@@ -35,7 +35,6 @@ security:
                 check_path: login
                 username_parameter: email
                 password_parameter: password
-                remember_me: true
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site

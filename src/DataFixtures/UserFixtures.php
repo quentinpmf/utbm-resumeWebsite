@@ -37,9 +37,9 @@ class UserFixtures extends Fixture
     {
         return [
             // $userData = [$fullname, $username, $password, $email, $roles];
-            ['Jane Doe', 'admin', 'admin', 'jane_admin90@yopmail.com', ['ROLE_ADMIN']],
-            ['Tom Doe', 'anon', 'anon', 'tom_user90@yopmail.com', ['ROLE_USER']],
-            ['John Doe', 'anon2', 'anon2', 'john_user90@yopmail.com', ['ROLE_USER']],
+            ['Jean Racine', 'jean_admin', 'admin', 'jean_racine90@yopmail.com', ['ROLE_ADMIN']],
+            ['Claude Debussy', 'claude', 'anon', 'claude_debussy90@yopmail.com', ['ROLE_USER']],
+            ['Blaise Pascal', 'blaise', 'anon2', 'blaise_pascal90@yopmail.com', ['ROLE_USER']],
         ];
     }
 }
