@@ -3,10 +3,48 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header class="header_area animated">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <!-- Menu Area Start -->
+                    <div class="col-12 col-lg-10">
+                        <div class="menu_area">
+                            <nav class="navbar navbar-expand-lg navbar-light">
+                                <!-- Logo -->
+                                <a class="navbar-brand" href="#">Mr.</a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                                <!-- Menu Area -->
+                                <div class="collapse navbar-collapse" id="ca-navbar">
+                                    <ul class="navbar-nav ml-auto" id="nav">
+                                        <li class="nav-item active"><a class="nav-link" href="#home">Accueil</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#about">A propos</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#team">L'équipe</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- Signup btn -->
+                    <div class="col-12 col-lg-2">
+                        <div class="sing-up-button d-none d-lg-block">
+                            {% if app.user %}
+                                <a href="#">Se déconnecter</a>
+                            {% else %}
+                                <a href="#">Se connecter</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% block body %}
+
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
