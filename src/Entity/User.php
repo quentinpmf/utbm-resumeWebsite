@@ -53,6 +53,12 @@ class User implements UserInterface, \Serializable
     private $roles = [];
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
      * @var string The hashed password
      *
      * @ORM\Column(type="string")
@@ -69,14 +75,15 @@ class User implements UserInterface, \Serializable
         $this->fullName = $fullName;
     }
 
-    public function getFullName(): string
+    public function getFullName(): ?string
     {
         return $this->fullName;
     }
 
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
-        return $this->username;
+        //return $this->username;
+        return $this->email;
     }
 
     public function setUsername(string $username): void
@@ -115,6 +122,16 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
     /**
      * @see UserInterface
      */
@@ -135,7 +152,9 @@ class User implements UserInterface, \Serializable
      */
     public function getSalt()
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+        // The bcrypt and argon2i algorithms don't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
     }
 
     /**
