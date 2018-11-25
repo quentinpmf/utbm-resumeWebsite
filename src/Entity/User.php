@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -64,6 +66,21 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Resume", mappedBy="user")
+     */
+    private $resumes;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\UserInformations", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $userInformations;
+
+    public function __construct()
+    {
+        $this->resumes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -181,5 +198,53 @@ class User implements UserInterface, \Serializable
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
         [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    /**
+     * @return Collection|Resume[]
+     */
+    public function getResumes(): Collection
+    {
+        return $this->resumes;
+    }
+
+    public function addResume(Resume $resume): self
+    {
+        if (!$this->resumes->contains($resume)) {
+            $this->resumes[] = $resume;
+            $resume->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResume(Resume $resume): self
+    {
+        if ($this->resumes->contains($resume)) {
+            $this->resumes->removeElement($resume);
+            // set the owning side to null (unless already changed)
+            if ($resume->getUser() === $this) {
+                $resume->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUserInformations(): ?UserInformations
+    {
+        return $this->userInformations;
+    }
+
+    public function setUserInformations(UserInformations $userInformations): self
+    {
+        $this->userInformations = $userInformations;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $userInformations->getUser()) {
+            $userInformations->setUser($this);
+        }
+
+        return $this;
     }
 }
