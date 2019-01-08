@@ -200,8 +200,8 @@
                     ?>
 
                     <form class="login-form" method="post" action="connectToBDD/doLogin.php" >
-                        <input style="border-bottom: 1px solid black;" type="email" id="email" name="login_email" value="" maxlength="60" />
-                        <input style="border-bottom: 1px solid black;" type="password" id="motdepasse" name="login_password" value="" maxlength="20" />
+                        <input style="border-bottom: 1px solid black;" type="email" id="email" name="login_email" value="" placeholder="Email" maxlength="60" />
+                        <input style="border-bottom: 1px solid black;" type="password" id="motdepasse" name="login_password" value="" placeholder="Mot de passe" maxlength="20" />
                         <button>Connexion</button>
                         <p class="message">Pas enregistré? <a href="register.php">Créer un compte</a></p>
                         <p class="message2">Vous avez oublié votre mot de passe? <a href="forget_mdp.php">Cliquez ici</a></p>
