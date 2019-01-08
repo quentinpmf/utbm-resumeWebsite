@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <header class="header_area animated">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <!-- Menu Area Start -->
+                    <div class="col-12 col-lg-10">
+                        <div class="menu_area">
+                            <nav class="navbar navbar-expand-lg navbar-light">
+                                <!-- Logo -->
+                                <a class="navbar-brand" href="#">Mr.</a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                                <!-- Menu Area -->
+                                <div class="collapse navbar-collapse" id="ca-navbar">
+                                    <ul class="navbar-nav ml-auto" id="nav">
+                                        <li class="nav-item active"><a class="nav-link" href="#home">Accueil</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#about">A propos</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#team">L'équipe</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                                        {% if app.user %}
+                                            <li class="nav-item"><a class="nav-link" href="#creator">Outil de création de CV</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- Signup btn -->
+                    <div class="col-12 col-lg-2">
+                        <div class="sing-up-button d-none d-lg-block">
+                            {% if app.user %}
+                                <a href="{{ path('logout') }}" class="navbar-link">Se déconnecter</a>
+                            {% else %}
+                                <a href="{{ path('login') }}" class="navbar-link">Se connecter</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% block body %}
+            <script src="https://cdn.recast.ai/webchat/webchat.js"
+                    channelId="e36cb074-9a3f-48aa-bb48-8fc86e9b2c42"
+                    token="11088d740cf3bf1668630ee094b10013"
+                    id="recast-webchat"
+            ></script>
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
