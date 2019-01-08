@@ -88,17 +88,17 @@ function isElement(obj){
 
 var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 
-if (resumeEditor === undefined) var resumeEditor = {};
+if (Vvveb === undefined) var Vvveb = {};
 
-resumeEditor.defaultComponent = "_base";
-resumeEditor.preservePropertySections = true;
-resumeEditor.dragIcon = 'icon';//icon = use component icon when dragging | html = use component html to create draggable element
+Vvveb.defaultComponent = "_base";
+Vvveb.preservePropertySections = true;
+Vvveb.dragIcon = 'icon';//icon = use component icon when dragging | html = use component html to create draggable element
 
-resumeEditor.baseUrl =  document.currentScript?document.currentScript.src.replace(/[^\/]*?\.js$/,''):'';
+Vvveb.baseUrl =  document.currentScript?document.currentScript.src.replace(/[^\/]*?\.js$/,''):'';
 
-resumeEditor.ComponentsGroup = {};
+Vvveb.ComponentsGroup = {};
 
-resumeEditor.Components = {
+Vvveb.Components = {
 	
 	_components: {},
 	
@@ -274,20 +274,20 @@ resumeEditor.Components = {
 		rightPanel = jQuery("#right-panel #component-properties");
 		section = rightPanel.find('.section[data-section="default"]');
 		
-		if (!(resumeEditor.preservePropertySections && section.length))
+		if (!(Vvveb.preservePropertySections && section.length))
 		{
-			rightPanel.html('').append(tmpl("resumeEditor-input-sectioninput", {key:"default", header:component.name}));
+			rightPanel.html('').append(tmpl("vvveb-input-sectioninput", {key:"default", header:component.name}));
 			section = rightPanel.find(".section");
 		}
 
 		rightPanel.find('[data-header="default"] span').html(component.name);
 		section.html("")	
 	
-		if (component.beforeInit) component.beforeInit(resumeEditor.Builder.selectedEl.get(0));
+		if (component.beforeInit) component.beforeInit(Vvveb.Builder.selectedEl.get(0));
 		
 		fn = function(component, property) {
 			return property.input.on('propertyChange', function (event, value, input) {
-					element = resumeEditor.Builder.selectedEl;
+					element = Vvveb.Builder.selectedEl;
 					if (property.child) element = element.find(property.child);
 					if (property.parent) element = element.parent(property.parent);
 					
@@ -313,7 +313,7 @@ resumeEditor.Components = {
 							element = element.attr(property.htmlAttr, value);
 						}
 						
-						resumeEditor.Undo.addMutation({type: 'attributes',
+						Vvveb.Undo.addMutation({type: 'attributes', 
 												target: element.get(0), 
 												attributeName: property.htmlAttr, 
 												oldValue: oldValue, 
@@ -325,11 +325,11 @@ resumeEditor.Components = {
 						element = component.onChange(element, property, value, input);
 					}
 					
-					if (!property.child && !property.parent) resumeEditor.Builder.selectNode(element);
+					if (!property.child && !property.parent) Vvveb.Builder.selectNode(element);
 			});				
 		};			
 	
-		nodeElement = resumeEditor.Builder.selectedEl;
+		nodeElement = Vvveb.Builder.selectedEl;
 
 		for (var i in component.properties)
 		{
@@ -382,7 +382,7 @@ resumeEditor.Components = {
 			{
 				section = rightPanel.find('.section[data-section="' + property.key + '"]');
 				
-				if (resumeEditor.preservePropertySections && section.length)
+				if (Vvveb.preservePropertySections && section.length)
 				{
 					section.html("");
 				} else 
@@ -393,7 +393,7 @@ resumeEditor.Components = {
 			}
 			else
 			{
-				row = $(tmpl('resumeEditor-property', property));
+				row = $(tmpl('vvveb-property', property)); 
 				row.find('.input').append(property.input);
 				section.append(row);
 			}
@@ -405,13 +405,13 @@ resumeEditor.Components = {
 
 		}
 		
-		if (component.init) component.init(resumeEditor.Builder.selectedEl.get(0));
+		if (component.init) component.init(Vvveb.Builder.selectedEl.get(0));
 	}
 };	
 
 
 
-resumeEditor.WysiwygEditor = {
+Vvveb.WysiwygEditor = {
 	
 	isActive: false,
 	oldValue: '',
@@ -475,14 +475,14 @@ resumeEditor.WysiwygEditor = {
 
 	
 		node = this.element.get(0);
-		resumeEditor.Undo.addMutation({type:'characterData',
+		Vvveb.Undo.addMutation({type:'characterData', 
 								target: node, 
 								oldValue: this.oldValue, 
 								newValue: node.innerHTML});
 	}
 }
 	
-resumeEditor.Builder = {
+Vvveb.Builder = {
 
 	dragMoveMutation : false,
 	isPreview : false,
@@ -515,19 +515,19 @@ resumeEditor.Builder = {
 		componentsList.empty();
 		var item = {};
 		
-		for (group in resumeEditor.ComponentsGroup)
+		for (group in Vvveb.ComponentsGroup)	
 		{
 			componentsList.append('<li class="header" data-section="' + group + '"  data-search=""><label class="header" for="comphead_' + group + '">' + group + '  <div class="header-arrow"></div>\
 								   </label><input class="header_check" type="checkbox" checked="true" id="comphead_' + group + '">  <ol></ol></li>');
 
 			componentsSubList = componentsList.find('li[data-section="' + group + '"]  ol');
 			
-			components = resumeEditor.ComponentsGroup[ group ];
+			components = Vvveb.ComponentsGroup[ group ];
 			
 			for (i in components)
 			{
 				componentType = components[i];
-				component = resumeEditor.Components.get(componentType);
+				component = Vvveb.Components.get(componentType);
 				
 				if (component)
 				{
@@ -571,7 +571,7 @@ resumeEditor.Builder = {
 					return dialogText;
 				});
 			
-				resumeEditor.WysiwygEditor.init(window.FrameDocument);
+				Vvveb.WysiwygEditor.init(window.FrameDocument);
 				if (self.initCallback) self.initCallback();
 
                 return self._frameLoaded();
@@ -619,15 +619,15 @@ resumeEditor.Builder = {
 	},
 	
 	loadNodeComponent:  function(node) {
-		data = resumeEditor.Components.matchNode(node);
+		data = Vvveb.Components.matchNode(node);
 		var component;
 		
 		if (data) 
 			component = data.type;
 		else 
-			component = resumeEditor.defaultComponent;
+			component = Vvveb.defaultComponent;
 			
-		resumeEditor.Components.render(component);
+		Vvveb.Components.render(component);
 
 	},
 	
@@ -641,7 +641,7 @@ resumeEditor.Builder = {
 		
 		if (self.texteditEl && self.selectedEl.get(0) != node) 
 		{
-			resumeEditor.WysiwygEditor.destroy(self.texteditEl);
+			Vvveb.WysiwygEditor.destroy(self.texteditEl);
 			jQuery("#select-box").removeClass("text-edit").find("#select-actions").show();
 			self.texteditEl = null;
 		}
@@ -751,7 +751,7 @@ resumeEditor.Builder = {
 
 				if (self.dragMoveMutation === false)
 				{
-					resumeEditor.Undo.addMutation({type: 'childList',
+					Vvveb.Undo.addMutation({type: 'childList', 
 											target: node.parentNode, 
 											addedNodes: [node], 
 											nextSibling: node.nextSibling});
@@ -760,7 +760,7 @@ resumeEditor.Builder = {
 					self.dragMoveMutation.newParent = node.parentNode;
 					self.dragMoveMutation.newNextSibling = node.nextSibling;
 					
-					resumeEditor.Undo.addMutation(self.dragMoveMutation);
+					Vvveb.Undo.addMutation(self.dragMoveMutation);
 					self.dragMoveMutation = false;
 				}
 			}
@@ -768,11 +768,11 @@ resumeEditor.Builder = {
 
 		this.frameBody.on("dblclick", function(event) {
 			
-			if (resumeEditor.Builder.isPreview == false)
+			if (Vvveb.Builder.isPreview == false)
 			{
 				self.texteditEl = target = jQuery(event.target);
 
-				resumeEditor.WysiwygEditor.edit(self.texteditEl);
+				Vvveb.WysiwygEditor.edit(self.texteditEl);
 				
 				self.texteditEl.attr({'contenteditable':true, 'spellcheckker':false});
 				
@@ -792,7 +792,7 @@ resumeEditor.Builder = {
 		
 		this.frameBody.on("click", function(event) {
 			
-			if (resumeEditor.Builder.isPreview == false)
+			if (Vvveb.Builder.isPreview == false)
 			{
 				if (event.target)
 				{
@@ -844,7 +844,7 @@ resumeEditor.Builder = {
 			newParent = node.parentNode;
 			newNextSibling = node.nextSibling;
 			
-			resumeEditor.Undo.addMutation({type: 'move',
+			Vvveb.Undo.addMutation({type: 'move', 
 									target: node,
 									oldParent: oldParent,
 									newParent: newParent,
@@ -875,7 +875,7 @@ resumeEditor.Builder = {
 			newParent = node.parentNode;
 			newNextSibling = node.nextSibling;
 			
-			resumeEditor.Undo.addMutation({type: 'move',
+			Vvveb.Undo.addMutation({type: 'move', 
 									target: node,
 									oldParent: oldParent,
 									newParent: newParent,
@@ -894,7 +894,7 @@ resumeEditor.Builder = {
 			self.selectedEl = clone.click();
 			
 			node = clone.get(0);
-			resumeEditor.Undo.addMutation({type: 'childList',
+			Vvveb.Undo.addMutation({type: 'childList', 
 									target: node.parentNode, 
 									addedNodes: [node],
 									nextSibling: node.nextSibling});
@@ -919,7 +919,7 @@ resumeEditor.Builder = {
 			
 			node = self.selectedEl.get(0);
 		
-			resumeEditor.Undo.addMutation({type: 'childList',
+			Vvveb.Undo.addMutation({type: 'childList', 
 									target: node.parentNode, 
 									removedNodes: [node],
 									nextSibling: node.nextSibling});
@@ -975,7 +975,7 @@ resumeEditor.Builder = {
 			$("#component-clone").remove();
 			
 			
-			component = resumeEditor.Components.get($this.data("type"));
+			component = Vvveb.Components.get($this.data("type"));
 			
 			if (component.dragHtml)
 			{
@@ -991,7 +991,7 @@ resumeEditor.Builder = {
 			if (component.dragStart) self.dragElement = component.dragStart(self.dragElement);
 
 			self.isDragging = true;
-			if (resumeEditor.dragIcon == 'html')
+			if (Vvveb.dragIcon == 'html')
 				self.iconDrag = $(html).attr("id", "component-clone").css('position', 'absolute');
 			else
 				self.iconDrag = $('<img src=""/>').attr({"id": "component-clone", 'src': $this.css("background-image").replace(/^url\(['"](.+)['"]\)/, '$1')}).
@@ -1075,24 +1075,24 @@ resumeEditor.Builder = {
 	}
 };
 
-resumeEditor.CodeEditor = {
+Vvveb.CodeEditor = {
 	
 	isActive: false,
 	oldValue: '',
 	doc:false,
 	
 	init: function(doc) {
-		$("#resumeEditor-code-editor textarea").val(resumeEditor.Builder.getHtml());
+		$("#vvveb-code-editor textarea").val(Vvveb.Builder.getHtml());
 
-		$("#resumeEditor-code-editor textarea").keyup(function ()
+		$("#vvveb-code-editor textarea").keyup(function () 
 		{
-			delay(resumeEditor.Builder.setHtml(this.value), 1000);
+			delay(Vvveb.Builder.setHtml(this.value), 1000);
 		});
 
 		//load code on document changes
-		resumeEditor.Builder.frameBody.on("resumeEditor.undo.add resumeEditor.undo.restore", function (e) { resumeEditor.CodeEditor.setValue();});
+		Vvveb.Builder.frameBody.on("vvveb.undo.add vvveb.undo.restore", function (e) { Vvveb.CodeEditor.setValue();});
 		//load code when a new url is loaded
-		resumeEditor.Builder.documentFrame.on("load", function (e) { resumeEditor.CodeEditor.setValue();});
+		Vvveb.Builder.documentFrame.on("load", function (e) { Vvveb.CodeEditor.setValue();});
 
 		this.isActive = true;
 	},
@@ -1100,7 +1100,7 @@ resumeEditor.CodeEditor = {
 	setValue: function(value) {
 		if (this.isActive)
 		{
-			$("#resumeEditor-code-editor textarea").val(resumeEditor.Builder.getHtml());
+			$("#vvveb-code-editor textarea").val(Vvveb.Builder.getHtml());
 		}
 	},
 
@@ -1119,52 +1119,52 @@ resumeEditor.CodeEditor = {
 	}
 }
 
-resumeEditor.Gui = {
+Vvveb.Gui = {
 	
 	init: function() {
-		$("[data-resumeEditor-action]").each(function () {
+		$("[data-vvveb-action]").each(function () {
 			on = "click";
 			if (this.dataset.vvvebOn) on = this.dataset.vvvebOn;
 			
-			$(this).on(on, resumeEditor.Gui[this.dataset.vvvebAction]);
+			$(this).on(on, Vvveb.Gui[this.dataset.vvvebAction]);
 			if (this.dataset.vvvebShortcut)
 			{
-				$(document).bind('keydown', this.dataset.vvvebShortcut, resumeEditor.Gui[this.dataset.vvvebAction]);
-				$(window.FrameDocument, window.FrameWindow).bind('keydown', this.dataset.vvvebShortcut, resumeEditor.Gui[this.dataset.vvvebAction]);
+				$(document).bind('keydown', this.dataset.vvvebShortcut, Vvveb.Gui[this.dataset.vvvebAction]);
+				$(window.FrameDocument, window.FrameWindow).bind('keydown', this.dataset.vvvebShortcut, Vvveb.Gui[this.dataset.vvvebAction]);
 			}
 		});
 	},
 	
 	undo : function () {
-		if (resumeEditor.WysiwygEditor.isActive)
+		if (Vvveb.WysiwygEditor.isActive) 
 		{
-			resumeEditor.WysiwygEditor.undo();
+			Vvveb.WysiwygEditor.undo();
 		} else
 		{
-			resumeEditor.Undo.undo();
+			Vvveb.Undo.undo();
 		}
-		resumeEditor.Builder.selectNode();
+		Vvveb.Builder.selectNode();
 	},
 	
 	redo : function () {
-		if (resumeEditor.WysiwygEditor.isActive)
+		if (Vvveb.WysiwygEditor.isActive) 
 		{
-			resumeEditor.WysiwygEditor.redo();
+			Vvveb.WysiwygEditor.redo();
 		} else
 		{
-			resumeEditor.Undo.redo();
+			Vvveb.Undo.redo();
 		}
-		resumeEditor.Builder.selectNode();
+		Vvveb.Builder.selectNode();
 	},
 	
 	save : function () {
-		$('#textarea-modal textarea').val(resumeEditor.Builder.getHtml());
+		$('#textarea-modal textarea').val(Vvveb.Builder.getHtml());
 		$('#textarea-modal').modal();
 	},
 	
 	download : function () {
-		filename = /[^\/]+$/.exec(resumeEditor.Builder.iframe.src)[0];
-		uriContent = "data:application/octet-stream,"  + encodeURIComponent(resumeEditor.Builder.getHtml());
+		filename = /[^\/]+$/.exec(Vvveb.Builder.iframe.src)[0];
+		uriContent = "data:application/octet-stream,"  + encodeURIComponent(Vvveb.Builder.getHtml());
 
 		var link = document.createElement('a');
 		if ('download' in link)
@@ -1189,19 +1189,19 @@ resumeEditor.Gui = {
 	},
 	
 	toggleEditor : function () {
-		$("#resumeEditor-builder").toggleClass("bottom-panel-expand");
+		$("#vvveb-builder").toggleClass("bottom-panel-expand");
 		$("#toggleEditorJsExecute").toggle();
-		resumeEditor.CodeEditor.toggle();
+		Vvveb.CodeEditor.toggle();
 	},
 	
 	toggleEditorJsExecute : function () {
-		resumeEditor.Builder.runJsOnSetHtml = this.checked;
+		Vvveb.Builder.runJsOnSetHtml = this.checked;
 	},
 	
 	preview : function () {
-		(resumeEditor.Builder.isPreview == true)?resumeEditor.Builder.isPreview = false:resumeEditor.Builder.isPreview = true;
+		(Vvveb.Builder.isPreview == true)?Vvveb.Builder.isPreview = false:Vvveb.Builder.isPreview = true;
 		$("#iframe-layer").toggle();
-		$("#resumeEditor-builder").toggleClass("preview");
+		$("#vvveb-builder").toggleClass("preview");
 	},
 	
 	fullscreen : function () {
@@ -1224,7 +1224,7 @@ resumeEditor.Gui = {
 	}
 }
 
-resumeEditor.FileManager = {
+Vvveb.FileManager = {
 	tree:false,
 	pages:{},
 	currentPage: false,
@@ -1240,19 +1240,19 @@ resumeEditor.FileManager = {
 		$(this.tree).on("click", "li[data-page] label", function (e) {
 			var page = $(this.parentNode).data("page");
 			
-			if (page) resumeEditor.FileManager.loadPage(page);
+			if (page) Vvveb.FileManager.loadPage(page);
 			return false;			
 		})
 		
 		$(this.tree).on("click", "li[data-component] label ", function (e) {
 			node = $(e.currentTarget.parentNode).data("node");
 			
-			resumeEditor.Builder.frameHtml.animate({
+			Vvveb.Builder.frameHtml.animate({
 				scrollTop: $(node).offset().top
 			}, 1000);
 
-			resumeEditor.Builder.selectNode(node);
-			resumeEditor.Builder.loadNodeComponent(node);
+			Vvveb.Builder.selectNode(node);
+			Vvveb.Builder.loadNodeComponent(node);
 			
 			//e.preventDefault();
 			//return false;
@@ -1269,7 +1269,7 @@ resumeEditor.FileManager = {
 		this.pages[name] = {title:title, url:url};
 		
 		this.tree.append(
-			tmpl("resumeEditor-filemanager-page", {name:name, title:title, url:url}));
+			tmpl("vvveb-filemanager-page", {name:name, title:title, url:url}));
 	},
 	
 	addPages: function(pages) {
@@ -1281,7 +1281,7 @@ resumeEditor.FileManager = {
 	
 	addComponent: function(name, url, title, page) {
 		$("[data-page='" + page + "'] > ol", this.tree).append(
-			tmpl("resumeEditor-filemanager-component", {name:name, url:url, title:title}));
+			tmpl("vvveb-filemanager-component", {name:name, url:url, title:title}));
 	},
 	
 	getComponents: function() {
@@ -1293,7 +1293,7 @@ resumeEditor.FileManager = {
 						child = node.childNodes[j];
 						
 						if (child && child["attributes"] != undefined && 
-							(matchChild = resumeEditor.Components.matchNode(child)))
+							(matchChild = Vvveb.Components.matchNode(child))) 
 						{
 							element = {
 								name: matchChild.name,
@@ -1389,9 +1389,9 @@ resumeEditor.FileManager = {
 		
 		this.currentPage = name;
 		
-		resumeEditor.Builder.loadUrl(this.pages[name]['url'],
+		Vvveb.Builder.loadUrl(this.pages[name]['url'], 
 			function () { 
-				resumeEditor.FileManager.loadComponents();
+				Vvveb.FileManager.loadComponents(); 
 			});
 	},
 

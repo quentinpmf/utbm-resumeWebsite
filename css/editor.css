@@ -1,4 +1,21 @@
 @charset "UTF-8";
+/*
+Copyright 2017 Ziadin Givan
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+https://github.com/givanz/VvvebJs
+*/
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
 
@@ -8418,6 +8435,34 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
+/*
+Copyright 2017 Ziadin Givan
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+https://github.com/givanz/VvvebJs
+*/
+/*!
+  Ionicons, v2.0.0
+  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
+  https://twitter.com/benjsperry  https://twitter.com/ionicframework
+  MIT License: https://github.com/driftyco/ionicons
+
+  Android-style icons originally built by Google’s
+  Material Design Icons: https://github.com/google/material-design-icons
+  used under CC BY http://creativecommons.org/licenses/by/4.0/
+  Modified icons to fit ionicon’s grid from original.
+*/
 @font-face {
   font-family: "Ionicons";
   src: url("../fonts/ionicons.eot?v=2.0.0");
@@ -11453,7 +11498,7 @@ a.text-dark:hover, a.text-dark:focus {
 body {
   background: #eee; }
 
-#resumeEditor-builder #left-panel, #resumeEditor-builder #right-panel {
+#vvveb-builder #left-panel, #vvveb-builder #right-panel {
   border-color: #eee;
   border-style: solid;
   border-width: 0px;
@@ -11463,7 +11508,7 @@ body {
   top: 35px;
   z-index: 10; }
 
-#resumeEditor-builder #left-panel {
+#vvveb-builder #left-panel {
   float: left;
   border-right-width: 1px;
   overflow: hidden;
@@ -11479,35 +11524,35 @@ body {
   width: 260px;
   height: 100%;
   max-height: 100%; }
-  #resumeEditor-builder #left-panel:hover {
+  #vvveb-builder #left-panel:hover {
     width: 275px; }
-  #resumeEditor-builder #left-panel #components > .header {
+  #vvveb-builder #left-panel #components > .header {
     border-top: 1px solid #eee;
     position: relative; }
-    #resumeEditor-builder #left-panel #components > .header #clear-backspace {
+    #vvveb-builder #left-panel #components > .header #clear-backspace {
       border: none;
       background: none;
       position: absolute;
       top: 3px;
       right: 0px;
       opacity: 0.8; }
-      #resumeEditor-builder #left-panel #components > .header #clear-backspace i {
+      #vvveb-builder #left-panel #components > .header #clear-backspace i {
         font-size: 13px; }
-      #resumeEditor-builder #left-panel #components > .header #clear-backspace:hover {
+      #vvveb-builder #left-panel #components > .header #clear-backspace:hover {
         opacity: 1; }
-    #resumeEditor-builder #left-panel #components > .header input:focus + #clear-backspace,
-    #resumeEditor-builder #left-panel #components > .header input:hover + #clear-backspace {
+    #vvveb-builder #left-panel #components > .header input:focus + #clear-backspace,
+    #vvveb-builder #left-panel #components > .header input:hover + #clear-backspace {
       opacity: 1; }
-  #resumeEditor-builder #left-panel #components-list {
+  #vvveb-builder #left-panel #components-list {
     height: 98%;
     height: calc(99% - 200px);
     overflow-y: auto;
     overflow-x: hidden;
     width: 275px; }
-  #resumeEditor-builder #left-panel #filemanager {
+  #vvveb-builder #left-panel #filemanager {
     height: 200px;
     width: 275px; }
-    #resumeEditor-builder #left-panel #filemanager .header {
+    #vvveb-builder #left-panel #filemanager .header {
       font-size: 11px;
       font-weight: 600;
       height: 2rem;
@@ -11520,15 +11565,15 @@ body {
       border-bottom: 1px solid #eee;
       margin-bottom: 0rem;
       padding: 0.0rem 0.5rem; }
-      #resumeEditor-builder #left-panel #filemanager .header a {
+      #vvveb-builder #left-panel #filemanager .header a {
         color: #007bff; }
-    #resumeEditor-builder #left-panel #filemanager .tree {
+    #vvveb-builder #left-panel #filemanager .tree {
       height: 170px;
       padding: 0.5rem 0rem;
       overflow-y: auto;
       overflow-x: hidden; }
 
-#resumeEditor-builder #right-panel {
+#vvveb-builder #right-panel {
   float: right;
   right: 0px;
   border-left-width: 1px;
@@ -11567,37 +11612,37 @@ body {
 		-moz-box-shadow: -1px 0px 2px rgba(0,0,0,.3);
 		-webkit-box-shadow: -1px 0px 2px rgba(0,0,0,.3);
 */ }
-  #resumeEditor-builder #right-panel #component-properties {
+  #vvveb-builder #right-panel #component-properties {
     overflow-y: auto;
     overflow-x: hidden;
     height: 98%; }
-    #resumeEditor-builder #right-panel #component-properties .custom-select {
+    #vvveb-builder #right-panel #component-properties .custom-select {
       height: auto; }
-    #resumeEditor-builder #right-panel #component-properties .form-control, #resumeEditor-builder #right-panel #component-properties .custom-select {
+    #vvveb-builder #right-panel #component-properties .form-control, #vvveb-builder #right-panel #component-properties .custom-select {
       padding: .275rem 0.25rem; }
-  #resumeEditor-builder #right-panel .form-group {
+  #vvveb-builder #right-panel .form-group {
     margin-right: 0px;
     margin-left: 0px; }
-    #resumeEditor-builder #right-panel .form-group [class^="col-sm-"] {
+    #vvveb-builder #right-panel .form-group [class^="col-sm-"] {
       padding-left: 10px;
       padding-right: 10px; }
-    #resumeEditor-builder #right-panel .form-group label {
+    #vvveb-builder #right-panel .form-group label {
       font-size: 11px;
       margin-bottom: 0px; }
-      #resumeEditor-builder #right-panel .form-group label i {
+      #vvveb-builder #right-panel .form-group label i {
         font-size: 14px; }
-    #resumeEditor-builder #right-panel .form-group .input {
+    #vvveb-builder #right-panel .form-group .input {
       width: 100%; }
-    #resumeEditor-builder #right-panel .form-group .custom-control {
+    #vvveb-builder #right-panel .form-group .custom-control {
       min-height: 1.1rem; }
 
-#resumeEditor-builder #top-panel {
+#vvveb-builder #top-panel {
   height: 35px;
   border-bottom: 1px solid #eee;
   text-align: center;
   background-color: #fafafa; }
 
-#resumeEditor-builder #bottom-panel {
+#vvveb-builder #bottom-panel {
   width: auto;
   height: 35px;
   bottom: 0px;
@@ -11606,10 +11651,10 @@ body {
   left: 260px;
   right: 260px;
   background-color: #fff; }
-  #resumeEditor-builder #bottom-panel #resumeEditor-code-editor {
+  #vvveb-builder #bottom-panel #vvveb-code-editor {
     width: 100%;
     height: 100%; }
-    #resumeEditor-builder #bottom-panel #resumeEditor-code-editor textarea {
+    #vvveb-builder #bottom-panel #vvveb-code-editor textarea {
       height: 100%;
       width: 100%;
       border: none;
@@ -11617,13 +11662,13 @@ body {
       margin-bottom: 10px;
       background: #fafafa; }
 
-#resumeEditor-builder.bottom-panel-expand #bottom-panel {
+#vvveb-builder.bottom-panel-expand #bottom-panel {
   height: 50%; }
 
-#resumeEditor-builder.bottom-panel-expand #canvas {
+#vvveb-builder.bottom-panel-expand #canvas {
   height: 50%; }
 
-#resumeEditor-builder #canvas {
+#vvveb-builder #canvas {
   margin-right: 260px;
   margin-left: 260px;
   width: 100%;
@@ -11633,31 +11678,31 @@ body {
   top: 35px;
   position: fixed;
   transition: width 0.35s, left 0.35s; }
-  #resumeEditor-builder #canvas #iframe-wrapper, #resumeEditor-builder #canvas iframe {
+  #vvveb-builder #canvas #iframe-wrapper, #vvveb-builder #canvas iframe {
     width: 100%;
     height: 100%;
     border: none; }
-  #resumeEditor-builder #canvas.tablet {
+  #vvveb-builder #canvas.tablet {
     width: 768px !important;
     left: calc(50% - 644px); }
-  #resumeEditor-builder #canvas.mobile {
+  #vvveb-builder #canvas.mobile {
     width: 320px !important;
     left: calc(50% - 420px); }
 
-#resumeEditor-builder.preview #canvas {
+#vvveb-builder.preview #canvas {
   width: 100%;
   margin-left: 0px;
   margin-right: 0px; }
 
-#resumeEditor-builder.preview #left-panel, #resumeEditor-builder.preview #right-panel {
+#vvveb-builder.preview #left-panel, #vvveb-builder.preview #right-panel {
   display: none; }
 
-#resumeEditor-builder #iframe-layer {
+#vvveb-builder #iframe-layer {
   overflow: hidden;
   pointer-events: none;
   white-space: nowrap; }
 
-#resumeEditor-builder #highlight-box {
+#vvveb-builder #highlight-box {
   position: absolute;
   border: 1px solid #4285f4;
   width: 0px;
@@ -11665,12 +11710,12 @@ body {
   top: 0px;
   left: 0px; }
 
-#resumeEditor-builder .text-edit#select-box {
+#vvveb-builder .text-edit#select-box {
   border-style: dashed;
   /*border-width:1px;*/
   background: transparent; }
 
-#resumeEditor-builder #select-box {
+#vvveb-builder #select-box {
   position: absolute;
   border: 1px solid #4285f4;
   background: rgba(66, 133, 244, 0.1);
@@ -11680,7 +11725,7 @@ body {
   left: 0px;
   display: none; }
 
-#resumeEditor-builder #select-actions, #resumeEditor-builder #wysiwyg-editor {
+#vvveb-builder #select-actions, #vvveb-builder #wysiwyg-editor {
   position: absolute;
   right: -1px;
   top: -25px;
@@ -11688,20 +11733,20 @@ body {
   color: #fff;
   border-radius: 3px 3px 0px 0px; }
 
-#resumeEditor-builder #wysiwyg-editor {
+#vvveb-builder #wysiwyg-editor {
   top: -22px;
   right: auto;
   left: -1px;
   display: none; }
 
-#resumeEditor-builder #select-actions a, #resumeEditor-builder #wysiwyg-editor a {
+#vvveb-builder #select-actions a, #vvveb-builder #wysiwyg-editor a {
   pointer-events: auto;
   color: #fff;
   font-size: 16px;
   padding-right: 2px;
   padding: 0px 5px; }
 
-#resumeEditor-builder #highlight-name {
+#vvveb-builder #highlight-name {
   background: #4285f4;
   font-size: 12px;
   color: #fff;
@@ -11713,20 +11758,20 @@ body {
   display: inline-block;
   border-radius: 3px 3px 0px 0px; }
 
-#resumeEditor-builder #right-panel {
+#vvveb-builder #right-panel {
   color: #777; }
 
-#resumeEditor-builder #right-panel, #resumeEditor-builder #right-panel select, #resumeEditor-builder #right-panel input {
+#vvveb-builder #right-panel, #vvveb-builder #right-panel select, #vvveb-builder #right-panel input {
   font-size: 12px; }
 
-#resumeEditor-builder #right-panel label {
+#vvveb-builder #right-panel label {
   margin-top: 4px; }
 
-#resumeEditor-builder ::-webkit-scrollbar {
+#vvveb-builder ::-webkit-scrollbar {
   width: 0.8em;
   background: #fafafa; }
 
-#resumeEditor-builder ::-webkit-scrollbar-thumb {
+#vvveb-builder ::-webkit-scrollbar-thumb {
   background: #ccc; }
 
 /* style for drag element */

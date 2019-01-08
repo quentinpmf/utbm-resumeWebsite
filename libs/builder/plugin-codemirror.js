@@ -1,4 +1,4 @@
-resumeEditor.CodeEditor = {
+Vvveb.CodeEditor = {
 	
 	isActive: false,
 	oldValue: '',
@@ -9,7 +9,7 @@ resumeEditor.CodeEditor = {
 
 		if (this.codemirror == false)		
 		{
-			this.codemirror = CodeMirror.fromTextArea(document.querySelector("#resumeEditor-code-editor textarea"), {
+			this.codemirror = CodeMirror.fromTextArea(document.querySelector("#vvveb-code-editor textarea"), {
 				mode: 'text/html',
 				lineNumbers: true,
 				autofocus: true,
@@ -21,15 +21,15 @@ resumeEditor.CodeEditor = {
 			this.isActive = true;
 			this.codemirror.getDoc().on("change", function (e, v) { 
 				if (v.origin != "setValue")
-				delay(resumeEditor.Builder.setHtml(e.getValue()), 1000);
+				delay(Vvveb.Builder.setHtml(e.getValue()), 1000);
 			});
 		}
 		
 		
 		//_self = this;
-		resumeEditor.Builder.frameBody.on("resumeEditor.undo.add resumeEditor.undo.restore", function (e) { resumeEditor.CodeEditor.setValue(e);});
+		Vvveb.Builder.frameBody.on("vvveb.undo.add vvveb.undo.restore", function (e) { Vvveb.CodeEditor.setValue(e);});
 		//load code when a new url is loaded
-		resumeEditor.Builder.documentFrame.on("load", function (e) { resumeEditor.CodeEditor.setValue();});
+		Vvveb.Builder.documentFrame.on("load", function (e) { Vvveb.CodeEditor.setValue();});
 
 		this.isActive = true;
 		this.setValue();
@@ -41,7 +41,7 @@ resumeEditor.CodeEditor = {
 		if (this.isActive == true)
 		{
 			var scrollInfo = this.codemirror.getScrollInfo();
-			this.codemirror.setValue(resumeEditor.Builder.getHtml());
+			this.codemirror.setValue(Vvveb.Builder.getHtml());
 			this.codemirror.scrollTo(scrollInfo.left, scrollInfo.top);
 		}
 	},

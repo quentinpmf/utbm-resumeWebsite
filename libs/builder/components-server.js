@@ -1,7 +1,25 @@
-resumeEditor.ComponentsGroup['Server Components'] = ["components/products", "components/product", "components/categories", "components/manufacturers", "components/search", "components/user", "components/product_gallery", "components/cart", "components/checkout", "components/filters", "components/product", "components/slider"];
+/*
+Copyright 2017 Ziadin Givan
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+https://github.com/givanz/VvvebJs
+*/
+
+Vvveb.ComponentsGroup['Server Components'] = ["components/products", "components/product", "components/categories", "components/manufacturers", "components/search", "components/user", "components/product_gallery", "components/cart", "components/checkout", "components/filters", "components/product", "components/slider"];
 
 
-resumeEditor.Components.add("components/product", {
+Vvveb.Components.add("components/product", {
     name: "Product",
     attributes: ["data-component-product"],
 
@@ -57,7 +75,7 @@ resumeEditor.Components.add("components/product", {
 });    
 
 
-resumeEditor.Components.add("components/products", {
+Vvveb.Components.add("components/products", {
     name: "Products",
     attributes: ["data-component-products"],
 
@@ -201,7 +219,7 @@ resumeEditor.Components.add("components/products", {
     ]
 });
 
-resumeEditor.Components.add("components/manufacturers", {
+Vvveb.Components.add("components/manufacturers", {
     name: "Manufacturers",
     classes: ["component_manufacturers"],
     image: "icons/categories.svg",
@@ -222,7 +240,7 @@ resumeEditor.Components.add("components/manufacturers", {
     ]
 });
 
-resumeEditor.Components.add("components/categories", {
+Vvveb.Components.add("components/categories", {
     name: "Categories",
     classes: ["component_categories"],
     image: "icons/categories.svg",
@@ -234,7 +252,7 @@ resumeEditor.Components.add("components/categories", {
         inputtype: FileUploadInput
     }]
 });
-resumeEditor.Components.add("components/search", {
+Vvveb.Components.add("components/search", {
     name: "Search",
     classes: ["component_search"],
     image: "icons/search.svg",
@@ -256,7 +274,7 @@ resumeEditor.Components.add("components/search", {
         inputtype: TextInput
     }]
 });
-resumeEditor.Components.add("components/user", {
+Vvveb.Components.add("components/user", {
     name: "User",
     classes: ["component_user"],
     image: "icons/user.svg",
@@ -278,7 +296,7 @@ resumeEditor.Components.add("components/user", {
         inputtype: TextInput
     }]
 });
-resumeEditor.Components.add("components/product_gallery", {
+Vvveb.Components.add("components/product_gallery", {
     name: "Product gallery",
     classes: ["component_product_gallery"],
     image: "icons/product_gallery.svg",
@@ -300,7 +318,7 @@ resumeEditor.Components.add("components/product_gallery", {
         inputtype: TextInput
     }]
 });
-resumeEditor.Components.add("components/cart", {
+Vvveb.Components.add("components/cart", {
     name: "Cart",
     classes: ["component_cart"],
     image: "icons/cart.svg",
@@ -322,7 +340,7 @@ resumeEditor.Components.add("components/cart", {
         inputtype: TextInput
     }]
 });
-resumeEditor.Components.add("components/checkout", {
+Vvveb.Components.add("components/checkout", {
     name: "Checkout",
     classes: ["component_checkout"],
     image: "icons/checkout.svg",
@@ -344,7 +362,7 @@ resumeEditor.Components.add("components/checkout", {
         inputtype: TextInput
     }]
 });
-resumeEditor.Components.add("components/filters", {
+Vvveb.Components.add("components/filters", {
     name: "Filters",
     classes: ["component_filters"],
     image: "icons/filters.svg",
@@ -366,7 +384,7 @@ resumeEditor.Components.add("components/filters", {
         inputtype: TextInput
     }]
 });
-resumeEditor.Components.add("components/product", {
+Vvveb.Components.add("components/product", {
     name: "Product",
     classes: ["component_product"],
     image: "icons/product.svg",
@@ -388,7 +406,7 @@ resumeEditor.Components.add("components/product", {
         inputtype: TextInput
     }]
 });
-resumeEditor.Components.add("components/slider", {
+Vvveb.Components.add("components/slider", {
     name: "Slider",
     classes: ["component_slider"],
     image: "icons/slider.svg",
