@@ -1189,7 +1189,7 @@ Vvveb.Gui = {
 	},
 	
 	toggleEditor : function () {
-		$("#vvveb-builder").toggleClass("bottom-panel-expand");
+		$("#resume-editor").toggleClass("bottom-panel-expand");
 		$("#toggleEditorJsExecute").toggle();
 		Vvveb.CodeEditor.toggle();
 	},
@@ -1201,7 +1201,7 @@ Vvveb.Gui = {
 	preview : function () {
 		(Vvveb.Builder.isPreview == true)?Vvveb.Builder.isPreview = false:Vvveb.Builder.isPreview = true;
 		$("#iframe-layer").toggle();
-		$("#vvveb-builder").toggleClass("preview");
+		$("#resume-editor").toggleClass("preview");
 	},
 	
 	fullscreen : function () {
