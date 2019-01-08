@@ -17,7 +17,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * @Route("/profile")
  * @Security("has_role('ROLE_USER')")
  *
- * @author Romain Monteil <monteil.romain@gmail.com>
  */
 class UserController extends AbstractController
 {

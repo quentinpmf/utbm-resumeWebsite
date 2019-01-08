@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         {% block stylesheets %}{% endblock %}
@@ -24,6 +25,9 @@
                                         <li class="nav-item"><a class="nav-link" href="#about">A propos</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#team">L'équipe</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                                        {% if app.user %}
+                                            <li class="nav-item"><a class="nav-link" href="#creator">Outil de création de CV</a></li>
+                                        {% endif %}
                                     </ul>
                                 </div>
                             </nav>
@@ -43,7 +47,11 @@
             </div>
         </header>
         {% block body %}
-
+            <script src="https://cdn.recast.ai/webchat/webchat.js"
+                    channelId="e36cb074-9a3f-48aa-bb48-8fc86e9b2c42"
+                    token="11088d740cf3bf1668630ee094b10013"
+                    id="recast-webchat"
+            ></script>
         {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

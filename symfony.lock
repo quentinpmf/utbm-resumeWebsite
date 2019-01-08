@@ -2,6 +2,9 @@
     "composer/ca-bundle": {
         "version": "1.1.3"
     },
+    "container-interop/container-interop": {
+        "version": "1.2.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -80,6 +83,9 @@
     "doctrine/reflection": {
         "version": "v1.0.0"
     },
+    "dompdf/dompdf": {
+        "version": "v0.8.3"
+    },
     "easycorp/easy-log-handler": {
         "version": "1.0",
         "recipe": {
@@ -107,11 +113,23 @@
     "monolog/monolog": {
         "version": "1.24.0"
     },
+    "nikic/fast-route": {
+        "version": "v1.3.0"
+    },
     "nikic/php-parser": {
         "version": "v4.1.0"
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "overtrue/phplint": {
+        "version": "1.1.9"
+    },
+    "phenx/php-font-lib": {
+        "version": "0.5.1"
+    },
+    "phenx/php-svg-lib": {
+        "version": "v0.3.2"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -122,11 +140,17 @@
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
     },
+    "pimple/pimple": {
+        "version": "v3.2.3"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
     "psr/container": {
         "version": "1.0.0"
+    },
+    "psr/http-message": {
+        "version": "1.0.1"
     },
     "psr/link": {
         "version": "1.0.0"
@@ -136,6 +160,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "sabberworm/php-css-parser": {
+        "version": "8.1.0"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -154,6 +181,9 @@
             "version": "4.0",
             "ref": "421933bf8f0e75546ac8e00cb3eb12904fa2ac1a"
         }
+    },
+    "slim/slim": {
+        "version": "3.11.0"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.3"
