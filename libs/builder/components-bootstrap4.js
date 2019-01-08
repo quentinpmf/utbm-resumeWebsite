@@ -1,21 +1,3 @@
-/*
-Copyright 2017 Ziadin Givan
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-https://github.com/givan/Vvvebjs
-*/
-
 bgcolorClasses = ["bg-primary", "bg-secondary", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white"]
 
 bgcolorSelectOptions = 
@@ -68,14 +50,14 @@ function changeNodeName(node, newNodeName)
 	return newNode;
 }
 
-Vvveb.ComponentsGroup['Composants Bootstrap'] =
+resumeEditor.ComponentsGroup['Composants Bootstrap'] =
 //["html/container", "html/gridrow", "html/button", "html/buttongroup", "html/buttontoolbar", "html/heading", "html/image", "html/jumbotron", "html/alert", "html/card", "html/listgroup", "html/hr", "html/taglabel", "html/badge", "html/progress", "html/navbar", "html/breadcrumbs", "html/pagination", "html/form", "html/textinput", "html/textareainput", "html/selectinput", "html/fileinput", "html/checkbox", "html/radiobutton", "html/table", ];
 ["html/container", "html/gridrow", "html/heading", "html/image", "html/listgroup", "html/hr", "html/table","html/progress" ];
 
 
 var base_sort = 100;//start sorting for base component from 100 to allow extended properties to be first
 
-Vvveb.Components.add("_base", {
+resumeEditor.Components.add("_base", {
     name: "Element",
 	properties: [{
         key: "element_header",
@@ -104,7 +86,7 @@ Vvveb.Components.add("_base", {
 });    
 
 //display
-Vvveb.Components.extend("_base", "_base", {
+resumeEditor.Components.extend("_base", "_base", {
 	 properties: [
      {
         key: "display_header",
@@ -260,7 +242,7 @@ Vvveb.Components.extend("_base", "_base", {
 });    
 
 //Typography
-Vvveb.Components.extend("_base", "_base", {
+resumeEditor.Components.extend("_base", "_base", {
 	 properties: [
      {
 		key: "typography_header",
@@ -503,7 +485,7 @@ Vvveb.Components.extend("_base", "_base", {
 })
     
 //Size
-Vvveb.Components.extend("_base", "_base", {
+resumeEditor.Components.extend("_base", "_base", {
 	 properties: [{
 		key: "size_header",
 		inputtype: SectionInput,
@@ -562,7 +544,7 @@ Vvveb.Components.extend("_base", "_base", {
 });
 
 //Margin
-Vvveb.Components.extend("_base", "_base", {
+resumeEditor.Components.extend("_base", "_base", {
 	 properties: [{
 		key: "margins_header",
 		inputtype: SectionInput,
@@ -605,7 +587,7 @@ Vvveb.Components.extend("_base", "_base", {
 });
 
 //Padding
-Vvveb.Components.extend("_base", "_base", {
+resumeEditor.Components.extend("_base", "_base", {
 	 properties: [{
 		key: "paddings_header",
 		inputtype: SectionInput,
@@ -649,7 +631,7 @@ Vvveb.Components.extend("_base", "_base", {
 
 
 //Border
-Vvveb.Components.extend("_base", "_base", {
+resumeEditor.Components.extend("_base", "_base", {
 	 properties: [{
 		key: "border_header",
 		inputtype: SectionInput,
@@ -699,7 +681,7 @@ Vvveb.Components.extend("_base", "_base", {
 });    
 
 //Background image
-Vvveb.Components.extend("_base", "_base", {
+resumeEditor.Components.extend("_base", "_base", {
 	 properties: [{
 		key: "background_image_header",
 		inputtype: SectionInput,
@@ -807,7 +789,7 @@ Vvveb.Components.extend("_base", "_base", {
     }]
 });    
 
-Vvveb.Components.extend("_base", "html/container", {
+resumeEditor.Components.extend("_base", "html/container", {
     classes: ["container", "container-fluid"],
     image: "icons/container.svg",
     html: '<div class="container"><div class="m-5">Container</div></div>',
@@ -853,7 +835,7 @@ Vvveb.Components.extend("_base", "html/container", {
     }],
 });
 
-Vvveb.Components.extend("_base", "html/heading", {
+resumeEditor.Components.extend("_base", "html/heading", {
     image: "icons/heading.svg",
     name: "Titre",
     nodes: ["h1", "h2","h3", "h4","h5","h6"],
@@ -903,7 +885,7 @@ Vvveb.Components.extend("_base", "html/heading", {
        },
     }]
 });    
-Vvveb.Components.extend("_base", "html/link", {
+resumeEditor.Components.extend("_base", "html/link", {
     nodes: ["a"],
     name: "Link",
 	image: "icons/link.svg",
@@ -919,10 +901,10 @@ Vvveb.Components.extend("_base", "html/link", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.extend("_base", "html/image", {
+resumeEditor.Components.extend("_base", "html/image", {
     nodes: ["img"],
     name: "Image",
-    html: '<img src="' +  Vvveb.baseUrl + 'icons/image.svg" height="128" width="128">',
+    html: '<img src="' +  resumeEditor.baseUrl + 'icons/image.svg" height="128" width="128">',
     /*
     afterDrop: function (node)
 	{
@@ -952,13 +934,13 @@ Vvveb.Components.extend("_base", "html/image", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.add("html/hr", {
+resumeEditor.Components.add("html/hr", {
     image: "icons/hr.svg",
     nodes: ["hr"],
     name: "Trait horizontal",
     html: "<hr>"
 });
-Vvveb.Components.extend("_base", "html/label", {
+resumeEditor.Components.extend("_base", "html/label", {
     name: "Label",
     nodes: ["label"],
     html: '<label for="">Label</label>',
@@ -969,7 +951,7 @@ Vvveb.Components.extend("_base", "html/label", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.extend("_base", "html/button", {
+resumeEditor.Components.extend("_base", "html/button", {
     classes: ["btn", "btn-link"],
     name: "Button",
     image: "icons/button.svg",
@@ -1071,7 +1053,7 @@ Vvveb.Components.extend("_base", "html/button", {
         }
     }]
 });
-Vvveb.Components.extend("_base", "html/buttongroup", {
+resumeEditor.Components.extend("_base", "html/buttongroup", {
     classes: ["btn-group"],
     name: "Button Group",
     image: "icons/button_group.svg",
@@ -1114,7 +1096,7 @@ Vvveb.Components.extend("_base", "html/buttongroup", {
         }
     }]
 });
-Vvveb.Components.extend("_base", "html/buttontoolbar", {
+resumeEditor.Components.extend("_base", "html/buttontoolbar", {
     classes: ["btn-toolbar"],
     name: "Button Toolbar",
     image: "icons/button_toolbar.svg",
@@ -1135,7 +1117,7 @@ Vvveb.Components.extend("_base", "html/buttontoolbar", {
 		  </div>\
 		</div>'
 });
-Vvveb.Components.extend("_base","html/alert", {
+resumeEditor.Components.extend("_base","html/alert", {
     classes: ["alert"],
     name: "Alert",
     image: "icons/alert.svg",
@@ -1180,7 +1162,7 @@ Vvveb.Components.extend("_base","html/alert", {
         }
     }]
 });
-Vvveb.Components.extend("_base", "html/badge", {
+resumeEditor.Components.extend("_base", "html/badge", {
     classes: ["badge"],
     image: "icons/badge.svg",
     name: "Badge",
@@ -1223,7 +1205,7 @@ Vvveb.Components.extend("_base", "html/badge", {
         }
      }]
 });
-Vvveb.Components.extend("_base", "html/card", {
+resumeEditor.Components.extend("_base", "html/card", {
     classes: ["card"],
     image: "icons/panel.svg",
     name: "Card",
@@ -1236,18 +1218,18 @@ Vvveb.Components.extend("_base", "html/card", {
 		  </div>\
 		</div>'
 });
-Vvveb.Components.extend("_base", "html/listgroup", {
+resumeEditor.Components.extend("_base", "html/listgroup", {
     name: "Liste",
     image: "icons/list_group.svg",
     classes: ["list-group"],
     html: '<ul class="list-group">\n  <li class="list-group-item">\n    <span class="badge">14</span>\n    Cras justo odio\n  </li>\n  <li class="list-group-item">\n    <span class="badge">2</span>\n    Dapibus ac facilisis in\n  </li>\n  <li class="list-group-item">\n    <span class="badge">1</span>\n    Morbi leo risus\n  </li>\n</ul>'
 });
-Vvveb.Components.extend("_base", "html/listitem", {
+resumeEditor.Components.extend("_base", "html/listitem", {
     name: "List Item",
     classes: ["list-group-item"],
     html: '<li class="list-group-item"><span class="badge">14</span> Cras justo odio</li>'
 });
-Vvveb.Components.extend("_base", "html/breadcrumbs", {
+resumeEditor.Components.extend("_base", "html/breadcrumbs", {
     classes: ["breadcrumb"],
     name: "Breadcrumbs",
     image: "icons/breadcrumbs.svg",
@@ -1257,7 +1239,7 @@ Vvveb.Components.extend("_base", "html/breadcrumbs", {
 		  <li class="breadcrumb-item active">Data 3</li>\
 		</ol>'
 });
-Vvveb.Components.extend("_base", "html/breadcrumbitem", {
+resumeEditor.Components.extend("_base", "html/breadcrumbitem", {
 	classes: ["breadcrumb-item"],
     name: "Breadcrumb Item",
     html: '<li class="breadcrumb-item"><a href="#">Library</a></li>',
@@ -1273,7 +1255,7 @@ Vvveb.Components.extend("_base", "html/breadcrumbitem", {
         }
     }]
 });
-Vvveb.Components.extend("_base", "html/pagination", {
+resumeEditor.Components.extend("_base", "html/pagination", {
     classes: ["pagination"],
     name: "Pagination",
     image: "icons/pagination.svg",
@@ -1325,7 +1307,7 @@ Vvveb.Components.extend("_base", "html/pagination", {
         }
     }]	
 });
-Vvveb.Components.extend("_base", "html/pageitem", {
+resumeEditor.Components.extend("_base", "html/pageitem", {
 	classes: ["page-item"],
     html: '<li class="page-item"><a class="page-link" href="#">1</a></li>',
     name: "Pagination Item",
@@ -1347,7 +1329,7 @@ Vvveb.Components.extend("_base", "html/pageitem", {
         }
    }]
 });
-Vvveb.Components.extend("_base", "html/progress", {
+resumeEditor.Components.extend("_base", "html/progress", {
     classes: ["progress"],
     name: "Progress Bar",
     image: "icons/progressbar.svg",
@@ -1422,7 +1404,7 @@ Vvveb.Components.extend("_base", "html/progress", {
         }
     }]
 });
-Vvveb.Components.extend("_base", "html/jumbotron", {
+resumeEditor.Components.extend("_base", "html/jumbotron", {
     classes: ["jumbotron"],
     image: "icons/jumbotron.svg",
     name: "Jumbotron",
@@ -1436,7 +1418,7 @@ Vvveb.Components.extend("_base", "html/jumbotron", {
 		  </p>\
 		</div>'
 });
-Vvveb.Components.extend("_base", "html/navbar", {
+resumeEditor.Components.extend("_base", "html/navbar", {
     classes: ["navbar"],
     image: "icons/navbar.svg",
     name: "Nav Bar",
@@ -1516,7 +1498,7 @@ Vvveb.Components.extend("_base", "html/navbar", {
     }]
 });
 
-Vvveb.Components.extend("_base", "html/form", {
+resumeEditor.Components.extend("_base", "html/form", {
     nodes: ["form"],
     image: "icons/form.svg",
     name: "Form",
@@ -1555,7 +1537,7 @@ Vvveb.Components.extend("_base", "html/form", {
     }]
 });
 
-Vvveb.Components.extend("_base", "html/textinput", {
+resumeEditor.Components.extend("_base", "html/textinput", {
     name: "Text Input",
 	attributes: {"type":"text"},
     image: "icons/text_input.svg",
@@ -1573,7 +1555,7 @@ Vvveb.Components.extend("_base", "html/textinput", {
     }]
 });
 
-Vvveb.Components.extend("_base", "html/selectinput", {
+resumeEditor.Components.extend("_base", "html/selectinput", {
 	nodes: ["select"],
     name: "Select Input",
     image: "icons/select_input.svg",
@@ -1604,7 +1586,7 @@ Vvveb.Components.extend("_base", "html/selectinput", {
 					if (input.nodeName == 'BUTTON')
 					{
 						option.remove();
-						Vvveb.Components.render("html/selectinput");
+						resumeEditor.Components.render("html/selectinput");
 						return node;
 					}
 
@@ -1646,18 +1628,18 @@ Vvveb.Components.extend("_base", "html/selectinput", {
 			 $(node).append('<option value="value">Text</option>');
 			 
 			 //render component properties again to include the new column inputs
-			 Vvveb.Components.render("html/selectinput");
+			 resumeEditor.Components.render("html/selectinput");
 			 
 			 return node;
 		}
 	}]
 });
-Vvveb.Components.extend("_base", "html/textareainput", {
+resumeEditor.Components.extend("_base", "html/textareainput", {
     name: "Text Area",
     image: "icons/text_area.svg",
     html: '<div class="form-group"><label>Your response:</label><textarea class="form-control"></textarea></div>'
 });
-Vvveb.Components.extend("_base", "html/radiobutton", {
+resumeEditor.Components.extend("_base", "html/radiobutton", {
     name: "Radio Button",
 	attributes: {"type":"radio"},
     image: "icons/radio.svg",
@@ -1669,7 +1651,7 @@ Vvveb.Components.extend("_base", "html/radiobutton", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.extend("_base", "html/checkbox", {
+resumeEditor.Components.extend("_base", "html/checkbox", {
     name: "Checkbox",
     attributes: {"type":"checkbox"},
     image: "icons/checkbox.svg",
@@ -1681,7 +1663,7 @@ Vvveb.Components.extend("_base", "html/checkbox", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.extend("_base", "html/fileinput", {
+resumeEditor.Components.extend("_base", "html/fileinput", {
     name: "Input group",
 	attributes: {"type":"file"},
     image: "icons/text_input.svg",
@@ -1689,7 +1671,7 @@ Vvveb.Components.extend("_base", "html/fileinput", {
 			  <input type="file" class="form-control">\
 			</div>'
 });
-Vvveb.Components.extend("_base", "html/table", {
+resumeEditor.Components.extend("_base", "html/table", {
     nodes: ["table"],
     classes: ["table"],
     image: "icons/table.svg",
@@ -1852,7 +1834,7 @@ Vvveb.Components.extend("_base", "html/table", {
         }
     }]
 });
-Vvveb.Components.extend("_base", "html/tablerow", {
+resumeEditor.Components.extend("_base", "html/tablerow", {
     nodes: ["tr"],
     name: "Table Row",
     html: "<tr><td>Cell 1</td><td>Cell 2</td><td>Cell 3</td></tr>",
@@ -1882,17 +1864,17 @@ Vvveb.Components.extend("_base", "html/tablerow", {
         }
     }]
 });
-Vvveb.Components.extend("_base", "html/tablecell", {
+resumeEditor.Components.extend("_base", "html/tablecell", {
     nodes: ["td"],
     name: "Table Cell",
     html: "<td>Cell</td>"
 });
-Vvveb.Components.extend("_base", "html/tableheadercell", {
+resumeEditor.Components.extend("_base", "html/tableheadercell", {
     nodes: ["th"],
     name: "Table Header Cell",
     html: "<th>Head</th>"
 });
-Vvveb.Components.extend("_base", "html/tablehead", {
+resumeEditor.Components.extend("_base", "html/tablehead", {
     nodes: ["thead"],
     name: "Table Head",
     html: "<thead><tr><th>Head 1</th><th>Head 2</th><th>Head 3</th></tr></thead>",
@@ -1922,13 +1904,13 @@ Vvveb.Components.extend("_base", "html/tablehead", {
         }
     }]
 });
-Vvveb.Components.extend("_base", "html/tablebody", {
+resumeEditor.Components.extend("_base", "html/tablebody", {
     nodes: ["tbody"],
     name: "Table Body",
     html: "<tbody><tr><td>Cell 1</td><td>Cell 2</td><td>Cell 3</td></tr></tbody>"
 });
 
-Vvveb.Components.add("html/gridcolumn", {
+resumeEditor.Components.add("html/gridcolumn", {
     name: "Grid Column",
     image: "icons/grid_row.svg",
     classesRegex: ["col-"],
@@ -1963,7 +1945,7 @@ Vvveb.Components.add("html/gridcolumn", {
 		},				
 	}]
 });
-Vvveb.Components.add("html/gridrow", {
+resumeEditor.Components.add("html/gridrow", {
     name: "Colonnes",
     image: "icons/grid_row.svg",
     classes: ["row"],
@@ -2004,7 +1986,7 @@ Vvveb.Components.add("html/gridrow", {
 					if (input.nodeName == 'BUTTON')
 					{
 						column.remove();
-						Vvveb.Components.render("html/gridrow");
+						resumeEditor.Components.render("html/gridrow");
 						return node;
 					}
 
@@ -2056,7 +2038,7 @@ Vvveb.Components.add("html/gridrow", {
 			 $(node).append('<div class="col-3">Col-3</div>');
 			 
 			 //render component properties again to include the new column inputs
-			 Vvveb.Components.render("html/gridrow");
+			 resumeEditor.Components.render("html/gridrow");
 			 
 			 return node;
 		}
