@@ -12,14 +12,15 @@
     <title>Magic resume</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/mainpage/img/core-img/favicon.ico">
+    <link rel="icon" href="assets/index/img/core-img/favicon.ico">
 
     <!-- Core Stylesheet -->
-    <link href="mainpage.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
 
     <!-- Responsive CSS -->
-    <link href="assets/mainpage/css/responsive.css" rel="stylesheet">
+    <link href="assets/index/css/responsive.css" rel="stylesheet">
 
+    <?php session_start(); ?>
 </head>
 
 <body>
@@ -55,7 +56,18 @@
             <!-- Signup btn -->
             <div class="col-12 col-lg-2">
                 <div class="sing-up-button d-none d-lg-block">
-                    <a href="#">Connexion</a>
+
+                    <?php
+                    if(isset($_SESSION['UserEmail']))
+                    {
+                        echo('<a href="login/logout.php">Déconnexion de '.$_SESSION["UserNom"].'</a>');
+                    }
+                    else
+                    {
+                        echo('<a href="login/login.php">Connexion</a>');
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>
@@ -76,8 +88,20 @@
                 <div class="get-start-area">
                     <!-- Signup btn -->
                     <div class="col-12 col-lg-2">
-                        <div class="sing-up-button">
-                            <a href="#">Se lancer</a>
+                        <div class="go-to-editor-button">
+
+                            <?php
+                            if(isset($_SESSION['UserEmail']))
+                            {
+                                echo('<a href="editor.html">Accèder à l\'outil</a>');
+                            }
+                            else
+                            {
+                                echo('<a href="login/register.php">Se lancer</a>');
+                            }
+                            ?>
+
+
                         </div>
                     </div>
                 </div>
@@ -86,7 +110,7 @@
     </div>
     <!-- Welcome thumb -->
     <div class="welcome-thumb wow fadeInDown" data-wow-delay="0.5s">
-        <img src="assets/mainpage/img/main_img.png" alt="">
+        <img src="assets/index/img/main_img.png" alt="">
     </div>
 </section>
 <!-- ***** Wellcome Area End ***** -->
@@ -143,7 +167,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="special_description_img">
-                        <img src="assets/mainpage/img/bg-img/special.png" alt="">
+                        <img src="assets/index/img/bg-img/special.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-xl-5 ml-xl-auto">
@@ -221,22 +245,22 @@
                 <!-- App Screenshots Slides  -->
                 <div class="app_screenshots_slides owl-carousel">
                     <div class="single-shot">
-                        <img src="assets/mainpage/img/scr-img/app-1.jpg" alt="">
+                        <img src="assets/index/img/scr-img/app-1.jpg" alt="">
                     </div>
                     <div class="single-shot">
-                        <img src="assets/mainpage/img/scr-img/app-2.jpg" alt="">
+                        <img src="assets/index/img/scr-img/app-2.jpg" alt="">
                     </div>
                     <div class="single-shot">
-                        <img src="assets/mainpage/img/scr-img/app-3.jpg" alt="">
+                        <img src="assets/index/img/scr-img/app-3.jpg" alt="">
                     </div>
                     <div class="single-shot">
-                        <img src="assets/mainpage/img/scr-img/app-4.jpg" alt="">
+                        <img src="assets/index/img/scr-img/app-4.jpg" alt="">
                     </div>
                     <div class="single-shot">
-                        <img src="assets/mainpage/img/scr-img/app-5.jpg" alt="">
+                        <img src="assets/index/img/scr-img/app-5.jpg" alt="">
                     </div>
                     <div class="single-shot">
-                        <img src="assets/mainpage/img/scr-img/app-3.jpg" alt="">
+                        <img src="assets/index/img/scr-img/app-3.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -337,16 +361,16 @@
             <div class="col-12 col-md-6 col-lg-5">
                 <div class="slider slider-nav">
                     <div class="client-thumbnail">
-                        <img src="assets/mainpage/img/bg-img/client-3.jpg" alt="">
+                        <img src="assets/index/img/bg-img/client-3.jpg" alt="">
                     </div>
                     <div class="client-thumbnail">
-                        <img src="assets/mainpage/img/bg-img/client-2.jpg" alt="">
+                        <img src="assets/index/img/bg-img/client-2.jpg" alt="">
                     </div>
                     <div class="client-thumbnail">
-                        <img src="assets/mainpage/img/bg-img/client-1.jpg" alt="">
+                        <img src="assets/index/img/bg-img/client-1.jpg" alt="">
                     </div>
                     <div class="client-thumbnail">
-                        <img src="assets/mainpage/img/bg-img/client-2.jpg" alt="">
+                        <img src="assets/index/img/bg-img/client-2.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -391,7 +415,7 @@
             <div class="offset-3 col-12 col-md-6 col-lg-3">
                 <div class="single-team-member">
                     <div class="member-image">
-                        <img src="assets/mainpage/img/team-img/team-1.jpg" alt="">
+                        <img src="assets/index/img/team-img/team-1.jpg" alt="">
                         <div class="team-hover-effects">
                             <div class="team-social-icon">
                                 <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -410,7 +434,7 @@
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="single-team-member">
                     <div class="member-image">
-                        <img src="assets/mainpage/img/team-img/team-2.jpg" alt="">
+                        <img src="assets/index/img/team-img/team-2.jpg" alt="">
                         <div class="team-hover-effects">
                             <div class="team-social-icon">
                                 <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -526,19 +550,19 @@
 <!-- ***** Footer Area Start ***** -->
 
 <!-- Jquery-2.2.4 JS -->
-<script src="assets/mainpage/js/jquery-2.2.4.min.js"></script>
+<script src="assets/index/js/jquery-2.2.4.min.js"></script>
 <!-- Popper js -->
-<script src="assets/mainpage/js/popper.min.js"></script>
+<script src="assets/index/js/popper.min.js"></script>
 <!-- Bootstrap-4 Beta JS -->
-<script src="assets/mainpage/js/bootstrap.min.js"></script>
+<script src="assets/index/js/bootstrap.min.js"></script>
 <!-- All Plugins JS -->
-<script src="assets/mainpage/js/plugins.js"></script>
+<script src="assets/index/js/plugins.js"></script>
 <!-- Slick Slider Js-->
-<script src="assets/mainpage/js/slick.min.js"></script>
+<script src="assets/index/js/slick.min.js"></script>
 <!-- Footer Reveal JS -->
-<script src="assets/mainpage/js/footer-reveal.min.js"></script>
+<script src="assets/index/js/footer-reveal.min.js"></script>
 <!-- Active JS -->
-<script src="assets/mainpage/js/active.js"></script>
+<script src="assets/index/js/active.js"></script>
 </body>
 
 </html>
