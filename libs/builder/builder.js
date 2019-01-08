@@ -326,6 +326,8 @@ Vvveb.Components = {
 					}
 					
 					if (!property.child && !property.parent) Vvveb.Builder.selectNode(element);
+					
+					return element;
 			});				
 		};			
 	
@@ -504,6 +506,8 @@ Vvveb.Builder = {
 		self._loadIframe(url);
 		
 		self._initDragdrop();
+		
+		self._initBox();
 
 		self.dragElement = null;
 	},
@@ -570,6 +574,36 @@ Vvveb.Builder = {
 					event.returnValue = dialogText;
 					return dialogText;
 				});
+				
+				jQuery(window.FrameWindow).on("scroll resize", function(event) {
+				
+						if (self.selectedEl)
+						{
+							offset = self.selectedEl.offset();
+							
+							jQuery("#select-box").css(
+								{"top": offset.top - self.frameDoc.scrollTop() , 
+								 "left": offset.left - self.frameDoc.scrollLeft() , 
+								 "width" : self.selectedEl.outerWidth(), 
+								 "height": self.selectedEl.outerHeight(),
+								 //"display": "block"
+								 });			
+								 
+						}
+						
+						if (self.highlightEl)
+						{
+							offset = self.highlightEl.offset();
+							
+							jQuery("#highlight-box").css(
+								{"top": offset.top - self.frameDoc.scrollTop() , 
+								 "left": offset.left - self.frameDoc.scrollLeft() , 
+								 "width" : self.highlightEl.outerWidth(), 
+								 "height": self.highlightEl.outerHeight(),
+								 //"display": "block"
+								 });			
+						}
+				});
 			
 				Vvveb.WysiwygEditor.init(window.FrameDocument);
 				if (self.initCallback) self.initCallback();
@@ -603,18 +637,7 @@ Vvveb.Builder = {
 		}
 		
 		if (componentName != '') return componentName;
-		
-		if (el.attributes)
-		for (var j = 0; j < el.attributes.length; j++){
-			
-		  if (el.attributes[j].nodeName.indexOf('data-component') > -1)	
-		  {
-			componentName = el.attributes[j].nodeName.replace('data-component-', '');	
-		  }
-		}
-		
-		if (componentName != '') return componentName;
-		//if (className) return componentName;
+
 		return el.tagName;
 	},
 	
@@ -664,7 +687,6 @@ Vvveb.Builder = {
 
 /* iframe highlight */    
     _initHighlight: function() {
-		
 		
 		moveEvent = {target:null, };
 		
@@ -806,6 +828,10 @@ Vvveb.Builder = {
 			
 		});
 		
+	},
+	
+	_initBox: function() {
+		
 		$("#drag-box").on("mousedown", function(event) {
 			jQuery("#select-box").hide();
 			self.dragElement = self.selectedEl;
@@ -887,6 +913,7 @@ Vvveb.Builder = {
 		});
 		
 		$("#clone-box").on("click", function(event) {
+			
 			clone = self.selectedEl.clone();
 			
 			self.selectedEl.after(clone);
@@ -930,35 +957,7 @@ Vvveb.Builder = {
 			return false;
 		});
 
-		jQuery(window.FrameWindow).on("scroll resize", function(event) {
-				
-				if (self.selectedEl)
-				{
-					offset = self.selectedEl.offset();
-					
-					jQuery("#select-box").css(
-						{"top": offset.top - self.frameDoc.scrollTop() , 
-						 "left": offset.left - self.frameDoc.scrollLeft() , 
-						 "width" : self.selectedEl.outerWidth(), 
-						 "height": self.selectedEl.outerHeight(),
-						 //"display": "block"
-						 });			
-						 
-				}
-				
-				if (self.highlightEl)
-				{
-					offset = self.highlightEl.offset();
-					
-					jQuery("#highlight-box").css(
-						{"top": offset.top - self.frameDoc.scrollTop() , 
-						 "left": offset.left - self.frameDoc.scrollLeft() , 
-						 "width" : self.highlightEl.outerWidth(), 
-						 "height": self.highlightEl.outerHeight(),
-						 //"display": "block"
-						 });			
-				}
-		});
+
 		
 	},	
 
@@ -1035,19 +1034,23 @@ Vvveb.Builder = {
 			
 	},
 
-	
 	getHtml: function() 
 	{
-		doc = window.FrameDocument;
+		var doc = window.FrameDocument;
+		var hasDoctpe = (doc.doctype !== null);
+		var html = "";
 		
-		return "<!DOCTYPE "
+		if (hasDoctpe) html =
+		"<!DOCTYPE "
          + doc.doctype.name
          + (doc.doctype.publicId ? ' PUBLIC "' + doc.doctype.publicId + '"' : '')
          + (!doc.doctype.publicId && doc.doctype.systemId ? ' SYSTEM' : '') 
          + (doc.doctype.systemId ? ' "' + doc.doctype.systemId + '"' : '')
-         + ">\n" 
-         + doc.documentElement.innerHTML
-         + "\n</html>";
+         + ">\n";
+          
+         html +=  doc.documentElement.innerHTML + "\n</html>";
+         
+         return html;
 	},
 	
 	setHtml: function(html) 
@@ -1157,9 +1160,34 @@ Vvveb.Gui = {
 		Vvveb.Builder.selectNode();
 	},
 	
+	//show modal with html content
 	save : function () {
 		$('#textarea-modal textarea').val(Vvveb.Builder.getHtml());
 		$('#textarea-modal').modal();
+	},
+	
+	//post html content through ajax to save to filesystem/db
+	saveAjax : function () {
+		
+		var data = {};
+		data["html"] = Vvveb.Builder.getHtml();
+		data["fileName"] = Vvveb.FileManager.getCurrentUrl();
+
+		$.ajax({
+			type: "POST",
+			url: 'save.php',//set your server side save script url
+			data: data,
+			success: function (data) {
+				//console.log("File saved at: ", data);
+				
+				$('#message-modal').modal().find(".modal-body").html("File saved at: " + data);
+
+				//Vvveb.FileManager.reloadCurrentPage(); //optional uncomment to reload after save
+			},
+			error: function (data) {
+				alert(data.responseText);
+			}
+		});			
 	},
 	
 	download : function () {
@@ -1383,13 +1411,24 @@ Vvveb.FileManager = {
 		$("[data-page='" + this.currentPage + "'] > ol", this.tree).replaceWith(html);
 	},
 	
-	loadPage: function(name) {
+	getCurrentUrl: function() {
+		if (this.currentPage)
+		return this.pages[this.currentPage]['url'];
+	},
+	
+	reloadCurrentPage: function() {
+		if (this.currentPage)
+		return this.loadPage(this.currentPage);
+	},
+	
+	loadPage: function(name, disableCache = true) {
 		$("[data-page]", this.tree).removeClass("active");
 		$("[data-page='" + name + "']", this.tree).addClass("active");
 		
 		this.currentPage = name;
+		var url = this.pages[name]['url'];
 		
-		Vvveb.Builder.loadUrl(this.pages[name]['url'], 
+		Vvveb.Builder.loadUrl(url + (disableCache ? (url.indexOf('?') > -1?'&':'?') + Math.random():''), 
 			function () { 
 				Vvveb.FileManager.loadComponents(); 
 			});

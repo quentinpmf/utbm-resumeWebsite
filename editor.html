@@ -20,7 +20,7 @@
 	<div id="vvveb-builder">
 				
 				<div id="top-panel">
-					<span class="float-left" id="logo">[Logo]</span>
+					<img src="img/logo.png" alt="Vvveb" class="float-left" id="logo">
 					
 					
 					<div class="btn-group mr-3" role="group">
@@ -43,12 +43,11 @@
 						  <i class="la la-eye"></i>
 					  </button>
 
-					  <!-- <button class="btn btn-light" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e"> -->
 					  <button class="btn btn-light" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e">
 						  <i class="la la-save"></i>
 					  </button>
 					  
-					  <button class="btn btn-light" title="Download" id="download-btn" data-vvveb-action="download" download="index.html">
+					  <button class="btn btn-light" title="Download" id="save-btn" data-vvveb-action="download" download="index.html">
 						  <i class="la la-download"></i>
 					  </button>
 					</div>	
@@ -73,22 +72,126 @@
 				
 				<div id="left-panel">
 
-						<!-- TODO Affichage mes CV comme Templates -->
-						<!-- <div id="myCVs">
-							<div class="header"><a href="#">Mes CVs</a></div>
-							<div class="tree">
-								<ol></ol>
-							</div>
-						</div> -->
-
 					  <div id="filemanager"> 
-							<div class="header"><a href="#">Templates</a></div>
-							<div class="tree">
-								<ol></ol>
-							</div>
-					  </div>
+							<div class="header"><a href="#">Pages</a></div>
 
+								<div class="tree">
+									<ol>
+										<!-- li>
+											<label for="folder1"><span>Folder 1</span></label> <input type="checkbox" checked id="folder1" /> 
+											<ol>
+												<li class="file"><a href="document.html.pdf">File 1</a></li>
+												<li>
+													<label for="subfolder1">Subfolder 1</label> <input type="checkbox" id="subfolder1" /> 
+													<ol>
+														<li class="file"><a href="#"><span>Filey 1</span></a></li>
+														<li>
+															<label for="subsubfolder1">Subfolder 1</label> <input type="checkbox" id="subsubfolder1" /> 
+															<ol>
+																<li class="file"><a href="#">File 1</a></li>
+																<li>
+																	<label for="subsubfolder2">Subfolder 1</label> <input type="checkbox" id="subsubfolder2" /> 
+																	<ol>
+																		<li class="file"><a href="#">Subfile 1</a></li>
+																		<li class="file"><a href="#">Subfile 2</a></li>
+																		<li class="file"><a href="#">Subfile 3</a></li>
+																		<li class="file"><a href="#">Subfile 4</a></li>
+																		<li class="file"><a href="#">Subfile 5</a></li>
+																		<li class="file"><a href="#">Subfile 6</a></li>
+																	</ol>
+																</li>
+															</ol>
+														</li>
+														<li class="file"><a href="#">File 3</a></li>
+														<li class="file"><a href="#">File 4</a></li>
+														<li class="file"><a href="#">File 5</a></li>
+														<li class="file"><a href="#">File 6</a></li>
+													</ol>
+												</li>
+											</ol>
+										</li>
+										<li>
+											<label for="folder2"><span>Folder 2</span></label> <input type="checkbox" id="folder2" /> 
+											<ol>
+												<li class="file active"><a href="#"><span>File 1</span></a></li>
+												<li>
+													<label for="subfolder2">Subfolder 1</label> <input type="checkbox" id="subfolder2" /> 
+													<ol>
+														<li class="file"><a href="#">Subfile 1</a></li>
+														<li class="file"><a href="#">Subfile 2</a></li>
+														<li class="file"><a href="#">Subfile 3</a></li>
+														<li class="file"><a href="#">Subfile 4</a></li>
+														<li class="file"><a href="#">Subfile 5</a></li>
+														<li class="file"><a href="#">Subfile 6</a></li>
+													</ol>
+												</li>
+											</ol>
+										</li>
+										<li class="active">
+											<label for="folder3"><span>Folder 3</span></label> <input type="checkbox" id="folder3" /> 
+											<ol>
+												<li class="file"><a href="#"><span>File 1</span></a></li>
+												<li>
+													<label for="subfolder3">Subfolder 1</label> <input type="checkbox" id="subfolder3" /> 
+													<ol>
+														<li class="file"><a href="#">Subfile 1</a></li>
+														<li class="file"><a href="#">Subfile 2</a></li>
+														<li class="file"><a href="#">Subfile 3</a></li>
+														<li class="file"><a href="#">Subfile 4</a></li>
+														<li class="file"><a href="#">Subfile 5</a></li>
+														<li class="file"><a href="#">Subfile 6</a></li>
+													</ol>
+												</li>
+											</ol>
+										</li>
+										<li>
+											<label for="folder4">Folder 4</label> <input type="checkbox" id="folder4" /> 
+											<ol>
+												<li class="file"><a href="#">File 1</a></li>
+												<li>
+													<label for="subfolder4">Subfolder 1</label> <input type="checkbox" id="subfolder4" /> 
+													<ol>
+														<li class="file"><a href="#">Subfile 1</a></li>
+														<li class="file"><a href="#">Subfile 2</a></li>
+														<li class="file"><a href="#">Subfile 3</a></li>
+														<li class="file"><a href="#">Subfile 4</a></li>
+														<li class="file"><a href="#">Subfile 5</a></li>
+														<li class="file"><a href="#">Subfile 6</a></li>
+													</ol>
+												</li>
+											</ol>
+										</li>
+										<li>
+											<label for="folder5">Folder 5</label> <input type="checkbox" id="folder5" /> 
+											<ol>
+												<li class="file"><a href="#">File 1</a></li>
+												<li>
+													<label for="subfolder5">Subfolder 1</label> <input type="checkbox" id="subfolder5" /> 
+													<ol>
+														<li class="file"><a href="#">Subfile 1</a></li>
+														<li class="file"><a href="#">Subfile 2</a></li>
+														<li class="file"><a href="#">Subfile 3</a></li>
+														<li class="file"><a href="#">Subfile 4</a></li>
+														<li class="file"><a href="#">Subfile 5</a></li>
+														<li class="file"><a href="#">Subfile 6</a></li>
+													</ol>
+												</li>
+											</ol>
+										</li  -->
+									</ol>
+								</div>
+					  </div>
+					  	
 					  <div id="components">
+						
+						<div class="header">
+						  
+							  <input class="form-control form-control-sm" placeholder="" type="text" id="component-search"  data-vvveb-action="componentSearch" data-vvveb-on="keyup">
+							  <button id="clear-backspace"  data-vvveb-action="clearComponentSearch">
+								  <i class="ion-backspace"></i>
+							  </button>
+						  
+						</div>
 
 						<div id="components-sidepane" class="sidepane">
 						  <div>
@@ -523,6 +626,27 @@
     </div>
   </div>
 </div>
+
+<!-- message modal-->
+<div class="modal fade" id="message-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">VvvebJs</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Page was successfully saved!.</p>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-primary">Ok</button> -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 	
 <!-- jquery-->
 <script src="js/jquery.min.js"></script>
@@ -539,7 +663,8 @@
 <!-- inputs-->
 <script src="libs/builder/inputs.js"></script>	
 <!-- components-->
-<script src="libs/builder/components-bootstrap4.js"></script>
+<script src="libs/builder/components-bootstrap4.js"></script>	
+<script src="libs/builder/components-widgets.js"></script>	
 
 <!-- plugins -->
 
@@ -555,8 +680,7 @@
 <script>
 $(document).ready(function() 
 {
-    //Choix du template de base CV lors de l'affichage
-	Vvveb.Builder.init('templates/narrow-jumbotron/index.html', function() {
+	Vvveb.Builder.init('demo/narrow-jumbotron/index.html', function() {
 		//run code after page/iframe is loaded
 	});
 
@@ -564,16 +688,14 @@ $(document).ready(function()
 	Vvveb.FileManager.init();
 	Vvveb.FileManager.addPages(
 	[
-		{name:"narrow-jumbotron", title:"Jumbotron",  url: "templates/narrow-jumbotron/index.html"},
 		{name:"template1", title:"Template CV 1",  url: "templates/CV/template1.html"},
 		{name:"template2", title:"Template CV 2",  url: "templates/CV/template2.html"},
 		{name:"template3", title:"Template CV 3",  url: "templates/CV/template3.html"},
 		{name:"template4", title:"Template CV 4",  url: "templates/CV/template4.html"},
 		{name:"template5", title:"Template CV 5",  url: "templates/CV/template5.html"}
 	]);
-
-	//Ici, il faudra faire un load du CV choisi par le User si il est connecté
-	//Vvveb.FileManager.loadPage("template1");
+	
+	Vvveb.FileManager.loadPage("template1");
 });
 </script>
 </body>

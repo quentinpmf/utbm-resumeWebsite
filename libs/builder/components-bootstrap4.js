@@ -68,9 +68,8 @@ function changeNodeName(node, newNodeName)
 	return newNode;
 }
 
-Vvveb.ComponentsGroup['Composants Bootstrap'] =
-//["html/container", "html/gridrow", "html/button", "html/buttongroup", "html/buttontoolbar", "html/heading", "html/image", "html/jumbotron", "html/alert", "html/card", "html/listgroup", "html/hr", "html/taglabel", "html/badge", "html/progress", "html/navbar", "html/breadcrumbs", "html/pagination", "html/form", "html/textinput", "html/textareainput", "html/selectinput", "html/fileinput", "html/checkbox", "html/radiobutton", "html/table", ];
-["html/container", "html/gridrow", "html/heading", "html/image", "html/listgroup", "html/hr", "html/table","html/progress" ];
+Vvveb.ComponentsGroup['Bootstrap 4'] =
+["html/container", "html/gridrow", "html/button", "html/buttongroup", "html/buttontoolbar", "html/heading", "html/image", "html/jumbotron", "html/alert", "html/card", "html/listgroup", "html/hr", "html/taglabel", "html/badge", "html/progress", "html/navbar", "html/breadcrumbs", "html/pagination", "html/form", "html/textinput", "html/textareainput", "html/selectinput", "html/fileinput", "html/checkbox", "html/radiobutton", "html/table", ];
 
 
 var base_sort = 100;//start sorting for base component from 100 to allow extended properties to be first
@@ -595,7 +594,7 @@ Vvveb.Components.extend("_base", "_base", {
         inputtype: CssUnitInput
     }, {
         name: "Left",
-        key: "margin-Left",
+        key: "margin-left",
 		htmlAttr: "style",
         sort: base_sort++,
         col:6,
@@ -638,7 +637,7 @@ Vvveb.Components.extend("_base", "_base", {
         inputtype: CssUnitInput
     }, {
         name: "Left",
-        key: "padding-Left",
+        key: "padding-left",
 		htmlAttr: "style",
         sort: base_sort++,
         col:6,
@@ -811,7 +810,7 @@ Vvveb.Components.extend("_base", "html/container", {
     classes: ["container", "container-fluid"],
     image: "icons/container.svg",
     html: '<div class="container"><div class="m-5">Container</div></div>',
-    name: "Conteneur",
+    name: "Container",
     properties: [
      {
         name: "Type",
@@ -855,7 +854,7 @@ Vvveb.Components.extend("_base", "html/container", {
 
 Vvveb.Components.extend("_base", "html/heading", {
     image: "icons/heading.svg",
-    name: "Titre",
+    name: "Heading",
     nodes: ["h1", "h2","h3", "h4","h5","h6"],
     html: "<h1>Heading</h1>",
     
@@ -955,7 +954,7 @@ Vvveb.Components.extend("_base", "html/image", {
 Vvveb.Components.add("html/hr", {
     image: "icons/hr.svg",
     nodes: ["hr"],
-    name: "Trait horizontal",
+    name: "Horizontal Rule",
     html: "<hr>"
 });
 Vvveb.Components.extend("_base", "html/label", {
@@ -1237,7 +1236,7 @@ Vvveb.Components.extend("_base", "html/card", {
 		</div>'
 });
 Vvveb.Components.extend("_base", "html/listgroup", {
-    name: "Liste",
+    name: "List Group",
     image: "icons/list_group.svg",
     classes: ["list-group"],
     html: '<ul class="list-group">\n  <li class="list-group-item">\n    <span class="badge">14</span>\n    Cras justo odio\n  </li>\n  <li class="list-group-item">\n    <span class="badge">2</span>\n    Dapibus ac facilisis in\n  </li>\n  <li class="list-group-item">\n    <span class="badge">1</span>\n    Morbi leo risus\n  </li>\n</ul>'
@@ -1693,7 +1692,7 @@ Vvveb.Components.extend("_base", "html/table", {
     nodes: ["table"],
     classes: ["table"],
     image: "icons/table.svg",
-    name: "Tableau",
+    name: "Table",
     html: '<table class="table">\
 		  <thead>\
 			<tr>\
@@ -1964,7 +1963,7 @@ Vvveb.Components.add("html/gridcolumn", {
 	}]
 });
 Vvveb.Components.add("html/gridrow", {
-    name: "Colonnes",
+    name: "Grid Row",
     image: "icons/grid_row.svg",
     classes: ["row"],
     html: '<div class="row"><div class="col-sm-4"><h3>col-sm-4</h3></div><div class="col-sm-4 col-5"><h3>col-sm-4</h3></div><div class="col-sm-4"><h3>col-sm-4</h3></div></div>',
