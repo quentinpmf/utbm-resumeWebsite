@@ -1247,6 +1247,14 @@ Vvveb.ResumeManager = {
             return false;
         });
 
+        //clic droit (modifier nom & supprimer)
+        $(this.tree).bind('contextmenu', function(e)
+		{
+            //TODO SHOW POPUP
+            e.preventDefault();
+            return false;
+		});
+
         $(this.tree).on("click", "li[data-page] label", function (e) {
             var page = $(this.parentNode).data("page");
             if (page) Vvveb.ResumeManager.loadPage(page);
