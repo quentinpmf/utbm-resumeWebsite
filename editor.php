@@ -9,15 +9,19 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
     <base href="">
-    <title>VvvebJs</title>
+    <title>ResumeEditor</title>
     
     <link href="css/editor.css" rel="stylesheet">
     <link href="css/line-awesome.css" rel="stylesheet">
+    <?php
+        //config
+        include "login/connectToBDD/conn.php";
+        session_start();
+    ?>
   </head>
 <body>
 
-
-	<div id="vvveb-builder">
+	<div id="resume-editor">
 				
 				<div id="top-panel">
 					<span class="float-left" id="logo">[Logo]</span>
@@ -73,26 +77,26 @@
 				
 				<div id="left-panel">
 
-						<!-- TODO Affichage mes CV comme Templates -->
-						<!-- <div id="myCVs">
+					<!-- TODO Affichage mes CV comme Templates -->
+					<div id="resumemanager">
 							<div class="header"><a href="#">Mes CVs</a></div>
 							<div class="tree">
 								<ol></ol>
 							</div>
-						</div> -->
+					  </div>
 
-					  <div id="filemanager"> 
-							<div class="header"><a href="#">Templates</a></div>
-							<div class="tree">
-								<ol></ol>
-							</div>
+					  <div id="filemanager">
+						  <div class="header"><a href="#">Templates</a></div>
+						  <div class="tree">
+							  <ol></ol>
+						  </div>
 					  </div>
 
 					  <div id="components">
 
 						<div id="components-sidepane" class="sidepane">
 						  <div>
-							  
+
 							<ul id="components-list" class="clearfix">
 							</ul>
 
@@ -464,11 +468,15 @@
 	
 </script>
 
+<script id="vvveb-resumemanager-page" type="text/html">
+	<li data-url="{%=url%}" data-page="{%=name%}" data-title="{%=title%}">
+		<label for="{%=name%}"><span>{%=title%}</span></label> <input type="checkbox" checked id="{%=name%}" />
+	</li>
+</script>
 
 <script id="vvveb-filemanager-page" type="text/html">
-	<li data-url="{%=url%}" data-page="{%=name%}">
+	<li data-url="{%=url%}" data-page="{%=name%}" data-title="{%=title%}">
 		<label for="{%=name%}"><span>{%=title%}</span></label> <input type="checkbox" checked id="{%=name%}" />
-		<ol></ol>
 	</li>
 </script>
 
@@ -549,31 +557,73 @@
 <script src="libs/codemirror/lib/codemirror.js"></script>
 <script src="libs/codemirror/lib/xml.js"></script>
 <script src="libs/codemirror/lib/formatting.js"></script>
-<script src="libs/builder/plugin-codemirror.js"></script>	
+<script src="libs/builder/plugin-codemirror.js"></script>
 
+
+<?php
+//récupération des CV par utilisateur et stockage dans le tableau $tab[]
+
+$tab = [];
+if(isset($_SESSION['UserId']) && $_SESSION['UserId'] != "")
+{
+    $req=$bdd->prepare("SELECT * FROM users_resumes WHERE user_id=:UserId");
+    $req->execute(array(
+        'UserId'=>$_SESSION['UserId']
+    ));
+    while ($data = $req->fetch())
+    {
+        $tab[] = array('id' => $data["id"], 'short_title' => $data['short_title'], 'title' => $data["title"], 'resume_location' => $data["resume_location"]);
+    }
+}
+
+?>
 
 <script>
 $(document).ready(function() 
 {
+    var userLastResumeLocation = <?php echo json_encode($_SESSION['UserLastResumeLocation']); ?> ;
+    var nbResume = <?php echo json_encode(count($tab)); ?> ;
+    console.log('userLastResumeLocation : ',userLastResumeLocation);
+    console.log('nbResume : ', nbResume);
+
     //Choix du template de base CV lors de l'affichage
-	Vvveb.Builder.init('templates/narrow-jumbotron/index.html', function() {
+	Vvveb.Builder.init(userLastResumeLocation, function() {
 		//run code after page/iframe is loaded
 	});
 
+    $(function(){
+        $('#left-panel li').each(function(){
+            var $this = $(this);
+            // if the current path is like this link, make it active
+            if($this.attr('data-url').indexOf(userLastResumeLocation) !== -1){
+                $this.addClass('active');
+            }
+        })
+    })
+
 	Vvveb.Gui.init();
+    Vvveb.ResumeManager.init();
+
+    var i;
+    var tab = <?php echo json_encode($tab); ?> ;
+    for (i = 0; i < nbResume; i++)
+    {
+        var short_title = tab[i]['short_title'];
+        var title = tab[i]['title'];
+        var resume_location = tab[i]['resume_location'];
+        Vvveb.ResumeManager.addResume(short_title,title,resume_location);
+    }
+
 	Vvveb.FileManager.init();
-	Vvveb.FileManager.addPages(
+    Vvveb.FileManager.addPages(
 	[
 		{name:"narrow-jumbotron", title:"Jumbotron",  url: "templates/narrow-jumbotron/index.html"},
 		{name:"template1", title:"Template CV 1",  url: "templates/CV/template1.html"},
 		{name:"template2", title:"Template CV 2",  url: "templates/CV/template2.html"},
 		{name:"template3", title:"Template CV 3",  url: "templates/CV/template3.html"},
-		{name:"template4", title:"Template CV 4",  url: "templates/CV/template4.html"},
-		{name:"template5", title:"Template CV 5",  url: "templates/CV/template5.html"}
+		{name:"template4", title:"Template CV 4",  url: "templates/CV/template4.html"}
 	]);
 
-	//Ici, il faudra faire un load du CV choisi par le User si il est connecté
-	//Vvveb.FileManager.loadPage("template1");
 });
 </script>
 </body>

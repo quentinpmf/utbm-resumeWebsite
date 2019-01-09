@@ -1157,9 +1157,19 @@ Vvveb.Gui = {
 		Vvveb.Builder.selectNode();
 	},
 	
-	save : function () {
-		$('#textarea-modal textarea').val(Vvveb.Builder.getHtml());
-		$('#textarea-modal').modal();
+	save : function ()
+	{
+		var short_title = $("#left-panel .tree li.active")[0].getAttribute('data-page');
+        var title = $("#left-panel .tree li.active")[0].getAttribute('data-title');
+		  $.ajax({
+			type: "POST",
+			url: 'saveResumeInHTMLFile.php',
+			data: {html: Vvveb.Builder.getHtml(), short_title: short_title, title: title},
+			success: function(data){
+				console.log('enregistrement d\'un CV');
+                location.reload(true); //on recharge la page pour faire apparaitre le nouveau CV dans "mes CVs"
+			}
+		  });
 	},
 	
 	download : function () {
@@ -1189,7 +1199,7 @@ Vvveb.Gui = {
 	},
 	
 	toggleEditor : function () {
-		$("#vvveb-builder").toggleClass("bottom-panel-expand");
+		$("#resume-editor").toggleClass("bottom-panel-expand");
 		$("#toggleEditorJsExecute").toggle();
 		Vvveb.CodeEditor.toggle();
 	},
@@ -1201,7 +1211,7 @@ Vvveb.Gui = {
 	preview : function () {
 		(Vvveb.Builder.isPreview == true)?Vvveb.Builder.isPreview = false:Vvveb.Builder.isPreview = true;
 		$("#iframe-layer").toggle();
-		$("#vvveb-builder").toggleClass("preview");
+		$("#resume-editor").toggleClass("preview");
 	},
 	
 	fullscreen : function () {
@@ -1222,6 +1232,162 @@ Vvveb.Gui = {
 	clearComponentSearch : function () {
 		$("#component-search").val("").keyup();
 	}
+}
+
+Vvveb.ResumeManager = {
+    tree:false,
+    resumes:{},
+    currentResume: false,
+
+    init: function() {
+        this.tree = $("#resumemanager .tree > ol").html("");
+
+        $(this.tree).on("click", "a", function (e) {
+            e.preventDefault();
+            return false;
+        });
+
+        //clic droit (modifier nom & supprimer)
+        $(this.tree).bind('contextmenu', function(e)
+		{
+            //TODO SHOW POPUP
+            e.preventDefault();
+            return false;
+		});
+
+        $(this.tree).on("click", "li[data-page] label", function (e) {
+            var page = $(this.parentNode).data("page");
+            if (page) Vvveb.ResumeManager.loadPage(page);
+            return false;
+        })
+
+        $(this.tree).on("click", "li[data-component] label ", function (e) {
+            node = $(e.currentTarget.parentNode).data("node");
+
+            Vvveb.Builder.frameHtml.animate({
+                scrollTop: $(node).offset().top
+            }, 1000);
+
+            Vvveb.Builder.selectNode(node);
+            Vvveb.Builder.loadNodeComponent(node);
+
+            //e.preventDefault();
+            //return false;
+        }).on("mouseenter", "li[data-component] label", function (e) {
+
+            node = $(e.currentTarget).data("node");
+            $(node).trigger("mousemove");
+
+        });
+    },
+
+    addResume: function(name, title, url) {
+
+        this.resumes[name] = {title:title, url:url};
+
+        this.tree.append(
+            tmpl("vvveb-resumemanager-page", {name:name, title:title, url:url}));
+    },
+
+    addResumes: function(resumes) {
+        for (resume in resumes)
+        {
+            this.addResume(resumes[resume]['name'], resumes[resume]['title'], resumes[resume]['url']);
+        }
+    },
+
+    addComponent: function(name, url, title, page) {
+        $("[data-page='" + page + "'] > ol", this.tree).append(
+            tmpl("vvveb-filemanager-component", {name:name, url:url, title:title}));
+    },
+
+    getComponents: function() {
+
+        var tree = [];
+        function getNodeTree (node, parent) {
+            if (node.hasChildNodes()) {
+                for (var j = 0; j < node.childNodes.length; j++) {
+                    child = node.childNodes[j];
+
+                    if (child && child["attributes"] != undefined &&
+                        (matchChild = Vvveb.Components.matchNode(child)))
+                    {
+                        element = {
+                            name: matchChild.name,
+                            image: matchChild.image,
+                            type: matchChild.type,
+                            node: child,
+                            children: []
+                        };
+                        element.children = [];
+                        parent.push(element);
+                        element = getNodeTree(child, element.children);
+                    } else
+                    {
+                        element = getNodeTree(child, parent);
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        getNodeTree(window.FrameDocument.body, tree);
+
+        return tree;
+    },
+
+    loadComponents: function() {
+
+        tree = this.getComponents();
+        html = drawComponentsTree(tree);
+
+        function drawComponentsTree(tree)
+        {
+            var html = $("<ol></ol>");
+            j++;
+            for (i in tree)
+            {
+                var node = tree[i];
+
+                if (tree[i].children.length > 0)
+                {
+                    var li = $('<li data-component="' + node.name + '">\
+					<label for="id' + j + '" style="background-image:url(libs/builder/' + node.image + ')"><span>' + node.name + '</span></label>\
+					<input type="checkbox" id="id' + j + '">\
+					</li>');
+                    li.data("node", node.node);
+                    li.append(drawComponentsTree(node.children));
+                    html.append(li);
+                }
+                else
+                {
+                    var li =$('<li data-component="' + node.name + '" class="file">\
+							<label for="id' + j + '" style="background-image:url(libs/builder/' + node.image + ')"><span>' + node.name + '</span></label>\
+							<input type="checkbox" id="id' + j + '"></li>');
+                    li.data("node", node.node);
+                    html.append(li);
+                }
+            }
+
+            return html;
+        }
+
+        $("[data-page='" + this.currentPage + "'] > ol", this.tree).replaceWith(html);
+    },
+
+    loadPage: function(name) {
+        $("[data-page]", this.tree).removeClass("active");
+        $("#filemanager .tree li.active").removeClass("active");
+        $("[data-page='" + name + "']", this.tree).addClass("active");
+
+        this.currentPage = name;
+
+        Vvveb.Builder.loadUrl(this.resumes[name]['url'],
+            function () {
+                Vvveb.ResumeManager.loadComponents();
+            });
+    }
 }
 
 Vvveb.FileManager = {
@@ -1325,30 +1491,6 @@ Vvveb.FileManager = {
 		tree = this.getComponents();
 		html = drawComponentsTree(tree);
 
-		/*
-		function drawComponentsTree(tree)
-		{
-			var html = "";
-			j++;
-			for (i in tree)
-			{
-				var node = tree[i];
-				
-				if (tree[i].children.length > 0) 
-					html += '<li data-component="' + node.name + '" data-node="' + node.node + '">\
-					<label for="id' + j + '" style="background-image:url(libs/builder/' + node.image + ')"><span>' + node.name + '</span></label> <input type="checkbox" id="id' + j + '" />\
-					<ol>' + drawComponentsTree(node.children) + '</ol></li>';		
-				else 
-					html +='<li data-component="' + node.name + '" class="file"  data-node="' + node.node + '">\
-							<a href="#" style="background-image:url(libs/builder/' + node.image + ')"><span>' + node.name + '</span></a></li>';
-			}
-			
-			return html;
-		}
-		
-		 $("[data-page='" + this.currentPage + "'] > ol", this.tree).html(html);
-		*/		
-		
 		function drawComponentsTree(tree)
 		{
 			var html = $("<ol></ol>");
@@ -1382,16 +1524,17 @@ Vvveb.FileManager = {
 		
 		$("[data-page='" + this.currentPage + "'] > ol", this.tree).replaceWith(html);
 	},
-	
+
 	loadPage: function(name) {
 		$("[data-page]", this.tree).removeClass("active");
+        $("#resumemanager .tree li.active").removeClass("active");
 		$("[data-page='" + name + "']", this.tree).addClass("active");
 		
 		this.currentPage = name;
 		
 		Vvveb.Builder.loadUrl(this.pages[name]['url'], 
 			function () { 
-				Vvveb.FileManager.loadComponents(); 
+				Vvveb.FileManager.loadComponents();
 			});
 	},
 
