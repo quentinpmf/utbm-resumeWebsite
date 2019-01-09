@@ -1259,7 +1259,7 @@ Vvveb.ResumeManager = {
             var page = $(this.parentNode).data("page");
             if (page) Vvveb.ResumeManager.loadPage(page);
             return false;
-        })
+        });
 
         $(this.tree).on("click", "li[data-component] label ", function (e) {
             node = $(e.currentTarget.parentNode).data("node");
