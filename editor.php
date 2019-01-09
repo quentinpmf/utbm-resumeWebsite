@@ -13,9 +13,13 @@
     
     <link href="css/editor.css" rel="stylesheet">
     <link href="css/line-awesome.css" rel="stylesheet">
+    <?php
+        //config
+        include "login/connectToBDD/conn.php";
+        session_start();
+    ?>
   </head>
 <body>
-
 
 	<div id="resume-editor">
 				
@@ -553,8 +557,32 @@
 <script src="libs/codemirror/lib/codemirror.js"></script>
 <script src="libs/codemirror/lib/xml.js"></script>
 <script src="libs/codemirror/lib/formatting.js"></script>
-<script src="libs/builder/plugin-codemirror.js"></script>	
+<script src="libs/builder/plugin-codemirror.js"></script>
 
+
+<?php
+//récupération des CV par utilisateur et stockage dans le tableau $tab[]
+
+$tab = [];
+if(isset($_SESSION['UserId']) && $_SESSION['UserId'] != "")
+{
+    $req=$bdd->prepare("SELECT * FROM users_resumes WHERE user_id=:UserId");
+    $req->execute(array(
+        'UserId'=>$_SESSION['UserId']
+    ));
+    while ($data = $req->fetch())
+    {
+        $tab[] = array('id' => $data["id"], 'title' => $data["title"], 'resume_location' => $data["resume_location"]);
+    }
+}
+
+?>
+
+<script>
+    var myvar = <?php echo json_encode($tab[0]); ?>;
+    console.log(myvar);
+    console.log(myvar);
+</script>
 
 <script>
 $(document).ready(function() 
@@ -565,6 +593,14 @@ $(document).ready(function()
 	});
 
 	Vvveb.Gui.init();
+
+    Vvveb.ResumeManager.init();
+    Vvveb.ResumeManager.addResumes(
+    [
+        {name:"test123", title:<?php echo json_encode($tab[0]['title']); ?>,  url:"<?php echo $tab[0]['resume_location']; ?>"},
+        {name:"test456", title:<?php echo json_encode($tab[1]['title']); ?>,  url:"<?php echo $tab[1]['resume_location']; ?>"}
+    ]);
+
 	Vvveb.FileManager.init();
     Vvveb.FileManager.addPages(
 	[
@@ -573,13 +609,6 @@ $(document).ready(function()
 		{name:"template2", title:"Template CV 2",  url: "templates/CV/template2.html"},
 		{name:"template3", title:"Template CV 3",  url: "templates/CV/template3.html"},
 		{name:"template4", title:"Template CV 4",  url: "templates/CV/template4.html"}
-	]);
-    Vvveb.ResumeManager.init();
-
-    Vvveb.ResumeManager.addResumes(
-	[
-		{name:"narrow-jumbotron", title:"Jumbotron",  url: "templates/narrow-jumbotron/index.html"},
-		{name:"template1", title:"Template CV 1",  url: "templates/CV/template1.html"}
 	]);
 
 

@@ -11550,7 +11550,7 @@ body {
     overflow-x: hidden;
     width: 275px; }
   #resume-editor #left-panel #filemanager {
-    height: 200px;
+    height: 150px;
     width: 275px; }
     #resume-editor #left-panel #filemanager .header {
       font-size: 11px;
@@ -11568,10 +11568,34 @@ body {
       #resume-editor #left-panel #filemanager .header a {
         color: #007bff; }
     #resume-editor #left-panel #filemanager .tree {
-      height: 170px;
+      height: 350px;
       padding: 0.5rem 0rem;
       overflow-y: auto;
       overflow-x: hidden; }
+
+  #resume-editor #left-panel #resumemanager {
+    height: 120px;
+    width: 275px; }
+  #resume-editor #left-panel #resumemanager .header {
+    font-size: 11px;
+    font-weight: 600;
+    height: 2rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    line-height: 2rem;
+    text-align: left;
+    padding-left: 1rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0rem;
+    padding: 0.0rem 0.5rem; }
+  #resume-editor #left-panel #resumemanager .header a {
+    color: #007bff; }
+  #resume-editor #left-panel #resumemanager .tree {
+    height: 350px;
+    padding: 0.5rem 0rem;
+    overflow-y: auto;
+    overflow-x: hidden; }
 
 #resume-editor #right-panel {
   float: right;
@@ -11587,7 +11611,7 @@ body {
   box-shadow: 1px -2px 2px #f3f3f3 inset;
   padding-bottom: 1rem;
   width: 260px;
-  /*		
+  /*
 		&:hover
 		{
 			width:$builder-right-panel-width + 15;
@@ -11599,11 +11623,11 @@ body {
 			overflow-y: auto;
 			overflow-x: hidden;
 			width:$builder-right-panel-width + 15;
-		
+
 			//scrollbar on hover
 			&:hover
 			{
-				
+
 			}
 		}
 */
@@ -11787,7 +11811,7 @@ li[data-type] {
   border-color: #ddd;
   border-style: solid;
   border-width: 0px;
-  /*		  
+  /*
 		border-left-width:1px;
 		border-top-width:1px;
 		*/
@@ -11881,7 +11905,7 @@ li[data-type] {
             border-color: #ddd;
             border-style: solid;
             border-width: 0px;
-            /*		  
+            /*
 		border-left-width:1px;
 		border-top-width:1px;
 		*/
@@ -11907,7 +11931,7 @@ li[data-type] {
               display: block; }
 
 /*
-#right-panel 
+#right-panel
 {
 */
 label.header {
