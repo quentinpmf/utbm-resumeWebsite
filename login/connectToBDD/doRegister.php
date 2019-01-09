@@ -56,7 +56,7 @@
 		$CharPhoneverif = "true" ;
 	}
 
-	$reqmail = $bdd->query("SELECT email FROM utilisateurs WHERE email='$email'");
+	$reqmail = $bdd->query("SELECT email FROM users WHERE email='$email'");
 	while($donneesmail=$reqmail->fetch(PDO::FETCH_OBJ))
 	{
 		$emailbdd=$donneesmail->email;

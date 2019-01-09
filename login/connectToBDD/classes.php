@@ -88,7 +88,7 @@ class user{
 	/*Compar les donnés saisi par l'utilisateur avec ceux sur la BDD*/
     public function Userlogin(){
         include "conn.php";
-        $req=$bdd->prepare("SELECT * FROM utilisateurs WHERE email=:UserEmail AND password=:UserPassword");
+        $req=$bdd->prepare("SELECT * FROM users WHERE email=:UserEmail AND password=:UserPassword");
         $req->execute(array(
             'UserEmail'=>$this->getUserEmail(),
             'UserPassword'=>$this->getUserPassword()
@@ -118,7 +118,7 @@ class user{
 
 	public function InsertUser(){
         include "conn.php";
-        $req=$bdd->prepare("INSERT INTO utilisateurs(email,password,nom,prenom,date_naissance,adresse,cp,ville,telephone) VALUES (:UserEmail,:UserPassword,:UserNom,:UserPrenom,:UserDateNaissance,:UserAdress,:UserCP,:UserVille,:UserTel)");
+        $req=$bdd->prepare("INSERT INTO users(email,password,nom,prenom,date_naissance,adresse,cp,ville,telephone) VALUES (:UserEmail,:UserPassword,:UserNom,:UserPrenom,:UserDateNaissance,:UserAdress,:UserCP,:UserVille,:UserTel)");
         $req->execute(array(
 			'UserEmail'=>$this->getUserEmail(),
 			'UserPassword'=>$this->getUserPassword(),
@@ -131,7 +131,7 @@ class user{
 			'UserTel'=>$this->getUserTel()
         ));
 
-        $req2=$bdd->prepare("SELECT id FROM utilisateurs WHERE email=:UserEmail");
+        $req2=$bdd->prepare("SELECT id FROM users WHERE email=:UserEmail");
         $req2->execute(array(
             'UserEmail'=>$this->getUserEmail()
         ));
