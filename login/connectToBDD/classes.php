@@ -1,7 +1,7 @@
 <?php
 
 class user{
-    private $UserId, $UserEmail, $UserPassword, $UserNom, $UserPrenom, $UserDateNaissance, $UserAdress, $UserCP, $UserVille, $UserTel;
+    private $UserId, $UserEmail, $UserPassword, $UserNom, $UserPrenom, $UserDateNaissance, $UserAdress, $UserCP, $UserVille, $UserTel, $UserLastResumeLocation;
 
 	/*Création de fonction pour allez chercher les informations */
 	
@@ -84,6 +84,14 @@ class user{
     public function setUserTel($UserTel){
         $this->UserTel=$UserTel;
     }
+
+    //UserLastResumeLocation
+    public function getUserLastResumeLocation(){
+        return $this->UserLastResumeLocation;
+    }
+    public function setUserLastResumeLocation($UserLastResumeLocation){
+        $this->UserLastResumeLocation=$UserLastResumeLocation;
+    }
     
 	/*Compar les donnés saisi par l'utilisateur avec ceux sur la BDD*/
     public function Userlogin(){
@@ -109,6 +117,20 @@ class user{
                 $this->setUserCP($data['cp']);
                 $this->setUserVille($data['ville']);
                 $this->setUserTel($data['telephone']);
+
+                //requete pour récuperer le last resume location
+                $req2=$bdd->prepare("SELECT * FROM users_resumes WHERE user_id=:UserId ORDER BY id DESC LIMIT 1");
+                $req2->execute(array(
+                    'UserId'=>$this->getUserId()
+                ));
+                if($req2->rowCount()==0){
+                    $this->setUserLastResumeLocation("templates/narrow-jumbotron/index.html"); //template de base
+                }
+                else{
+                    while($data2=$req2->fetch()){
+                        $this->setUserLastResumeLocation($data2['resume_location']);
+                    }
+                }
             }
             header("Location: ../../index.php?connect=ok");      /*Bien identifié la session est créée*/
             return true;

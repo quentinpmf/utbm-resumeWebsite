@@ -15,6 +15,7 @@
             $_SESSION['UserCP']=$user->getUserCP();
 			$_SESSION['UserVille']=$user->getUserVille();
 			$_SESSION['UserTel']=$user->getUserTel();
+            $_SESSION['UserLastResumeLocation']=$user->getUserLastResumeLocation();
         }
 
 ?>

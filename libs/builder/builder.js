@@ -1159,12 +1159,15 @@ Vvveb.Gui = {
 	
 	save : function ()
 	{
+		var short_title = $("#left-panel .tree li.active")[0].getAttribute('data-page');
+        var title = $("#left-panel .tree li.active")[0].getAttribute('data-title');
 		  $.ajax({
 			type: "POST",
 			url: 'saveResumeInHTMLFile.php',
-			data: {html: Vvveb.Builder.getHtml()},
+			data: {html: Vvveb.Builder.getHtml(), short_title: short_title, title: title},
 			success: function(data){
 				console.log('enregistrement d\'un CV');
+                location.reload(true); //on recharge la page pour faire apparaitre le nouveau CV dans "mes CVs"
 			}
 		  });
 	},
