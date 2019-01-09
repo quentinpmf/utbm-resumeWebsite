@@ -89,7 +89,7 @@
                             <?php
                             if(isset($_SESSION['UserEmail']))
                             {
-                                echo('<a href="editor.html">Accèder à l\'éditeur</a>');
+                                echo('<a href="editor.php">Accèder à l\'éditeur</a>');
                             }
                             else
                             {

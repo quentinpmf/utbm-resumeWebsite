@@ -572,17 +572,11 @@ if(isset($_SESSION['UserId']) && $_SESSION['UserId'] != "")
     ));
     while ($data = $req->fetch())
     {
-        $tab[] = array('id' => $data["id"], 'title' => $data["title"], 'resume_location' => $data["resume_location"]);
+        $tab[] = array('id' => $data["id"], 'short_title' => $data['short_title'], 'title' => $data["title"], 'resume_location' => $data["resume_location"]);
     }
 }
 
 ?>
-
-<script>
-    var myvar = <?php echo json_encode($tab[0]); ?>;
-    console.log(myvar);
-    console.log(myvar);
-</script>
 
 <script>
 $(document).ready(function() 
@@ -595,10 +589,11 @@ $(document).ready(function()
 	Vvveb.Gui.init();
 
     Vvveb.ResumeManager.init();
+    //TODO : faire en dynamique pour quand il y en a + que deux
     Vvveb.ResumeManager.addResumes(
     [
-        {name:"test123", title:<?php echo json_encode($tab[0]['title']); ?>,  url:"<?php echo $tab[0]['resume_location']; ?>"},
-        {name:"test456", title:<?php echo json_encode($tab[1]['title']); ?>,  url:"<?php echo $tab[1]['resume_location']; ?>"}
+        {name:<?php echo json_encode($tab[0]['short_title']); ?>, title:<?php echo json_encode($tab[0]['title']); ?>,  url:"<?php echo $tab[0]['resume_location']; ?>"},
+        {name:<?php echo json_encode($tab[1]['short_title']); ?>, title:<?php echo json_encode($tab[1]['title']); ?>,  url:"<?php echo $tab[1]['resume_location']; ?>"}
     ]);
 
 	Vvveb.FileManager.init();
