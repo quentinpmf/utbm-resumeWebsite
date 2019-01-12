@@ -667,7 +667,7 @@ $(document).ready(function()
     Vvveb.FileManager.addPages(
 	[
 		{name:"narrow-jumbotron", title:"Jumbotron",  url: "templates/narrow-jumbotron/index.html"},
-		{name:"template1", title:"Template CV 1",  url: "templates/CV/template1.html"},
+		{name:"template1", title:"Template Développeur",  url: "templates/CV/template1.html"},
 		{name:"template2", title:"Template CV 2",  url: "templates/CV/template2.html"},
 		{name:"template3", title:"Template CV 3",  url: "templates/CV/template3.html"}
 	]);
