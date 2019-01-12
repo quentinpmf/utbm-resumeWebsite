@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
     <base href="">
-    <title>ResumeEditor</title>
+    <title>magicResume</title>
     
     <link href="css/editor.css" rel="stylesheet">
     <link href="css/line-awesome.css" rel="stylesheet">
@@ -469,7 +469,7 @@
 </script>
 
 <script id="vvveb-resumemanager-page" type="text/html">
-	<li data-url="{%=url%}" data-page="{%=name%}" data-title="{%=title%}">
+	<li data-id="{%=id%}" data-url="{%=url%}" data-page="{%=name%}" data-title="{%=title%}">
 		<label for="{%=name%}"><span>{%=title%}</span></label> <input type="checkbox" checked id="{%=name%}" />
 	</li>
 </script>
@@ -511,27 +511,75 @@
 
 
 <!-- export html modal-->
-<div class="modal fade" id="textarea-modal" tabindex="-1" role="dialog" aria-labelledby="textarea-modal" aria-hidden="true">
+<div class="modal fade" id="manage-modal" tabindex="-1" role="dialog" aria-labelledby="manage-modal" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Export html</h5>
+        <h5 class="modal-title">Modification du titre du CV</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
-        
-        <textarea rows="25" cols="150" class="form-control"></textarea>
-      
+          <table>
+              <tr>
+                  <input type="hidden" id="resumeId" name="resumeId" class="form-control" required>
+                  <td width="100%">
+                      <input type="text" id="resumeTitle" name="resumeTitle" class="form-control" required>
+                  </td>
+                  <td width="20%">
+                      <button type="button" class="btn btn-success" onclick="changeResumeTitle()">Enregistrer</button>
+                  </td>
+              </tr>
+          </table>
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onclick="deleteResume(this)">Supprimer ce CV</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer la pop-up</button>
       </div>
+
     </div>
   </div>
 </div>
-	
+
+<script>
+    function deleteResume()
+    {
+        var resumeId = $('#resumeId')[0].value;
+        console.log('resumeId = ',resumeId);
+
+        $.ajax({
+            type: "POST",
+            url: 'deleteResume.php',
+            data: {id: resumeId},
+            success: function(data){
+                console.log('suppression d\'un CV');
+                location.reload(true); //on recharge la page pour faire apparaitre le nouveau nom du CV dans "mes CVs"
+            }
+        });
+    }
+
+    function changeResumeTitle()
+    {
+        var newResumeTitle = $('#resumeTitle')[0].value;
+        console.log('newResumeTitle = ',newResumeTitle);
+
+        var resumeId = $('#resumeId')[0].value;
+        console.log('resumeId = ',resumeId);
+
+        $.ajax({
+            type: "POST",
+            url: 'changeResumeName.php',
+            data: {id: resumeId, title: newResumeTitle},
+            success: function(data){
+                console.log('renommage d\'un CV');
+                location.reload(true); //on recharge la page pour faire apparaitre le nouveau nom du CV dans "mes CVs"
+            }
+        });
+    }
+</script>
 <!-- jquery-->
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.hotkeys.js"></script>
@@ -608,10 +656,11 @@ $(document).ready(function()
     var tab = <?php echo json_encode($tab); ?> ;
     for (i = 0; i < nbResume; i++)
     {
+        var id = tab[i]['id'];
         var short_title = tab[i]['short_title'];
         var title = tab[i]['title'];
         var resume_location = tab[i]['resume_location'];
-        Vvveb.ResumeManager.addResume(short_title,title,resume_location);
+        Vvveb.ResumeManager.addResume(id, short_title,title,resume_location);
     }
 
 	Vvveb.FileManager.init();

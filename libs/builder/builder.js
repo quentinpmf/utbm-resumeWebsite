@@ -1251,6 +1251,17 @@ Vvveb.ResumeManager = {
         $(this.tree).bind('contextmenu', function(e)
 		{
             //TODO SHOW POPUP
+            var resumeTitle = e.target.innerHTML;
+            var resumeId = e.target.offsetParent.dataset.id;
+
+            console.log('resumeTitle = ',resumeTitle);
+            console.log('resumeId = ',resumeId);
+
+            $('#resumeTitle').val(resumeTitle);
+            $('#resumeId').val(resumeId);
+
+            $('#manage-modal').modal('show');
+
             e.preventDefault();
             return false;
 		});
@@ -1281,12 +1292,16 @@ Vvveb.ResumeManager = {
         });
     },
 
-    addResume: function(name, title, url) {
+    addResume: function(id, name, title, url) {
+    	if(!id)
+		{
+			id = 0;
+		}
 
         this.resumes[name] = {title:title, url:url};
 
         this.tree.append(
-            tmpl("vvveb-resumemanager-page", {name:name, title:title, url:url}));
+            tmpl("vvveb-resumemanager-page", {id:id, name:name, title:title, url:url}));
     },
 
     addResumes: function(resumes) {
