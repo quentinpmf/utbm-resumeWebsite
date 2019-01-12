@@ -24,7 +24,7 @@
 	<div id="resume-editor">
 				
 				<div id="top-panel">
-					<span class="float-left" id="logo">[Logo]</span>
+					<span class="float-left" id="logo"><a href="index.php"><img src="img/logo2.png"></a></span>
 					
 					
 					<div class="btn-group mr-3" role="group">
@@ -48,7 +48,7 @@
 					  </button>
 
 					  <!-- <button class="btn btn-light" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e"> -->
-					  <button class="btn btn-light" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e">
+					  <button class="btn btn-light" title="Sauvegarder le CV    (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e">
 						  <i class="la la-save"></i>
 					  </button>
 					  
@@ -669,8 +669,7 @@ $(document).ready(function()
 		{name:"narrow-jumbotron", title:"Jumbotron",  url: "templates/narrow-jumbotron/index.html"},
 		{name:"template1", title:"Template CV 1",  url: "templates/CV/template1.html"},
 		{name:"template2", title:"Template CV 2",  url: "templates/CV/template2.html"},
-		{name:"template3", title:"Template CV 3",  url: "templates/CV/template3.html"},
-		{name:"template4", title:"Template CV 4",  url: "templates/CV/template4.html"}
+		{name:"template3", title:"Template CV 3",  url: "templates/CV/template3.html"}
 	]);
 
 });
