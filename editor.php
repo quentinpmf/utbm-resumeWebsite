@@ -55,6 +55,10 @@
 					  <button class="btn btn-light" title="Download" id="download-btn" data-vvveb-action="download" download="index.html">
 						  <i class="la la-download"></i>
 					  </button>
+
+                      <button class="btn btn-light" title="PDF" id="pdf-btn" data-vvveb-action="pdf" download="">
+                           <i class="la la-save"></i>
+                      </button>
 					</div>	
 
 

@@ -1193,6 +1193,54 @@ Vvveb.Gui = {
 			location.href = uriContent;
 		}
 	},
+
+	pdf : function (){
+		var short_title = $("#left-panel .tree li.active")[0].getAttribute('data-page');
+		var title = $("#left-panel .tree li.active")[0].getAttribute('data-title');
+		$.ajax({
+			type: "POST",
+			url: 'downloadPdf.php',
+			data: {html: Vvveb.Builder.getHtml(), short_title: short_title, title: title},
+			success: function(data){
+				console.log('export pdf d\'un CV');
+
+                setTimeout(function() {
+                    url = 'http://localhost/mycvproject/'+short_title;
+                    downloadFile(url);
+                }, 2000);
+
+                window.downloadFile = function (sUrl) {
+                    if (/(iP)/g.test(navigator.userAgent)) {
+                        window.open(sUrl, '_blank');
+                        return false;
+                    }
+                    if (window.downloadFile.isChrome || window.downloadFile.isSafari) {
+                        var link = document.createElement('a');
+                        link.href = sUrl;
+                        link.setAttribute('target','_blank');
+
+                        if (link.download !== undefined) {
+                            var fileName = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length);
+                            link.download = fileName;
+                        }
+                        if (document.createEvent) {
+                            var e = document.createEvent('MouseEvents');
+                            e.initEvent('click', true, true);
+                            link.dispatchEvent(e);
+                            return true;
+                        }
+                    }
+                    if (sUrl.indexOf('?') === -1) {
+                        sUrl += '?download';
+                    }
+                    window.open(sUrl, '_blank');
+                    return true;
+                }
+                window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+                window.downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
+			}
+		});
+	},
 	
 	viewport : function () {
 		$("#canvas").attr("class", this.dataset.view);
