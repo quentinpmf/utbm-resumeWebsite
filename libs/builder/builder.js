@@ -1238,6 +1238,14 @@ Vvveb.Gui = {
                 }
                 window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
                 window.downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
+                $.ajax({
+                    type: "POST",
+                    url: 'deletePdf.php',
+                    data: {short_title: short_title},
+                    success: function(data) {
+                        console.log('delete pdf');
+                    }
+                });
 			}
 		});
 	},
