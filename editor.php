@@ -9,8 +9,8 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
     <base href="">
-    <title>ResumeEditor</title>
-
+    <title>magicResume</title>
+    
     <link href="css/editor.css" rel="stylesheet">
     <link href="css/line-awesome.css" rel="stylesheet">
     <?php
@@ -22,11 +22,11 @@
 <body>
 
 	<div id="resume-editor">
-
+				
 				<div id="top-panel">
-					<span class="float-left" id="logo">[Logo]</span>
-
-
+					<span class="float-left" id="logo"><a href="index.php"><img src="img/logo2.png"></a></span>
+					
+					
 					<div class="btn-group mr-3" role="group">
 					  <button class="btn btn-light" title="Undo (Ctrl/Cmd + Z)" id="undo-btn" data-vvveb-action="undo" data-vvveb-shortcut="ctrl+z">
 						  <i class="la la-undo"></i>
@@ -36,8 +36,8 @@
 						  <i class="la la-undo la-flip-horizontal"></i>
 					  </button>
 					</div>
-
-
+										
+					
 					<div class="btn-group mr-3" role="group">
 					  <button class="btn btn-light" title="Fullscreen (F11)" id="fullscreen-btn" data-toggle="button" aria-pressed="false" data-vvveb-action="fullscreen">
 						  <i class="la la-arrows"></i>
@@ -48,10 +48,10 @@
 					  </button>
 
 					  <!-- <button class="btn btn-light" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e"> -->
-					  <button class="btn btn-light" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e">
+					  <button class="btn btn-light" title="Sauvegarder le CV    (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e">
 						  <i class="la la-save"></i>
 					  </button>
-
+					  
 					  <button class="btn btn-light" title="Download" id="download-btn" data-vvveb-action="download" download="index.html">
 						  <i class="la la-download"></i>
 					  </button>
@@ -473,7 +473,7 @@
 </script>
 
 <script id="vvveb-resumemanager-page" type="text/html">
-	<li data-url="{%=url%}" data-page="{%=name%}" data-title="{%=title%}">
+	<li data-id="{%=id%}" data-url="{%=url%}" data-page="{%=name%}" data-title="{%=title%}">
 		<label for="{%=name%}"><span>{%=title%}</span></label> <input type="checkbox" checked id="{%=name%}" />
 	</li>
 </script>
@@ -515,27 +515,74 @@
 
 
 <!-- export html modal-->
-<div class="modal fade" id="textarea-modal" tabindex="-1" role="dialog" aria-labelledby="textarea-modal" aria-hidden="true">
+<div class="modal fade" id="manage-modal" tabindex="-1" role="dialog" aria-labelledby="manage-modal" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Export html</h5>
+        <h5 class="modal-title">Modification du titre du CV</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-
-        <textarea rows="25" cols="150" class="form-control"></textarea>
-
+          <table>
+              <tr>
+                  <input type="hidden" id="resumeId" name="resumeId" class="form-control" required>
+                  <td width="100%">
+                      <input type="text" id="resumeTitle" name="resumeTitle" class="form-control" required>
+                  </td>
+                  <td width="20%">
+                      <button type="button" class="btn btn-success" onclick="changeResumeTitle()">Enregistrer</button>
+                  </td>
+              </tr>
+          </table>
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onclick="deleteResume(this)">Supprimer ce CV</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer la pop-up</button>
       </div>
+
     </div>
   </div>
 </div>
 
+<script>
+    function deleteResume()
+    {
+        var resumeId = $('#resumeId')[0].value;
+        console.log('resumeId = ',resumeId);
+
+        $.ajax({
+            type: "POST",
+            url: 'deleteResume.php',
+            data: {id: resumeId},
+            success: function(data){
+                console.log('suppression d\'un CV');
+                location.reload(true); //on recharge la page pour faire apparaitre le nouveau nom du CV dans "mes CVs"
+            }
+        });
+    }
+
+    function changeResumeTitle()
+    {
+        var newResumeTitle = $('#resumeTitle')[0].value;
+        console.log('newResumeTitle = ',newResumeTitle);
+
+        var resumeId = $('#resumeId')[0].value;
+        console.log('resumeId = ',resumeId);
+
+        $.ajax({
+            type: "POST",
+            url: 'changeResumeName.php',
+            data: {id: resumeId, title: newResumeTitle},
+            success: function(data){
+                console.log('renommage d\'un CV');
+                location.reload(true); //on recharge la page pour faire apparaitre le nouveau nom du CV dans "mes CVs"
+            }
+        });
+    }
+</script>
 <!-- jquery-->
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.hotkeys.js"></script>
@@ -545,11 +592,11 @@
 <script src="js/bootstrap.min.js"></script>
 
 <!-- builder code-->
-<script src="libs/builder/builder.js"></script>
+<script src="libs/builder/builder.js"></script>	
 <!-- undo manager-->
-<script src="libs/builder/undo.js"></script>
+<script src="libs/builder/undo.js"></script>	
 <!-- inputs-->
-<script src="libs/builder/inputs.js"></script>
+<script src="libs/builder/inputs.js"></script>	
 <!-- components-->
 <script src="libs/builder/components-bootstrap4.js"></script>
 
@@ -612,20 +659,20 @@ $(document).ready(function()
     var tab = <?php echo json_encode($tab); ?> ;
     for (i = 0; i < nbResume; i++)
     {
+        var id = tab[i]['id'];
         var short_title = tab[i]['short_title'];
         var title = tab[i]['title'];
         var resume_location = tab[i]['resume_location'];
-        Vvveb.ResumeManager.addResume(short_title,title,resume_location);
+        Vvveb.ResumeManager.addResume(id, short_title,title,resume_location);
     }
 
 	Vvveb.FileManager.init();
     Vvveb.FileManager.addPages(
 	[
 		{name:"narrow-jumbotron", title:"Jumbotron",  url: "templates/narrow-jumbotron/index.html"},
-		{name:"template1", title:"Template CV 1",  url: "templates/CV/template1.html"},
+		{name:"template1", title:"Template Développeur",  url: "templates/CV/template1.html"},
 		{name:"template2", title:"Template CV 2",  url: "templates/CV/template2.html"},
-		{name:"template3", title:"Template CV 3",  url: "templates/CV/template3.html"},
-		{name:"template4", title:"Template CV 4",  url: "templates/CV/template4.html"}
+		{name:"template3", title:"Template CV 3",  url: "templates/CV/template3.html"}
 	]);
 
 });
