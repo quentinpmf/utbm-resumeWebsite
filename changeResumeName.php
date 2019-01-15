@@ -32,7 +32,7 @@
                         $resume_location = $data["resume_location"];
 
                         //renommer le fichier sur le serveur
-                        $newLocation = "templates/CV/".$_SESSION['UserId']."-".$_SESSION['UserNom']."/".$short_title.".html";
+                        $newLocation = "templates/CV/".$_SESSION['UserId']."/".$short_title.".html";
                         rename($resume_location, $newLocation);
 
                         //si le CV est bien présent, on fait l'update de son nom :

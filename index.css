@@ -454,6 +454,10 @@ p {
     background-size: cover;
 }
 
+#lien_user:hover{
+    cursor: pointer;
+}
+
 .wellcome_area:after {
     position: absolute;
     width: 100%;

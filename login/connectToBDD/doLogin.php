@@ -11,6 +11,7 @@
 			$_SESSION['UserPassword']=$user->getUserPassword();
             $_SESSION['UserNom']=$user->getUserNom();
             $_SESSION['UserPrenom']=$user->getUserPrenom();
+            $_SESSION['UserDateNaissance']=$user->getUserDateNaissance();
             $_SESSION['UserAdress']=$user->getUserAdress();
             $_SESSION['UserCP']=$user->getUserCP();
 			$_SESSION['UserVille']=$user->getUserVille();

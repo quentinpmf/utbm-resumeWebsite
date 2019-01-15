@@ -14,7 +14,7 @@
             && (isset($_POST['title']) && $_POST['title'] != "") )
         {
             //chemin vers le dossier
-            $pathToFolder = "templates/CV/".$_SESSION['UserId']."-".$_SESSION['UserNom'];
+            $pathToFolder = "templates/CV/".$_SESSION['UserId'];
             $nameFile = $_POST['short_title'].".html";
             $fullPathToFile = $pathToFolder.'/'.$nameFile;
             //on regarde si le dossier existe déja sinon on le crée.
