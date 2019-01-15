@@ -11,6 +11,9 @@
 
     <title>Drag'n Resume</title>
 
+    <!-- Favicon -->
+    <link rel="icon" href="../img/favicon.png">
+
     <!-- Custom styles for this template -->
     <style>
         .login-page {

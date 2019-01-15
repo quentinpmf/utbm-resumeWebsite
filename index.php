@@ -12,7 +12,7 @@
     <title>Drag'n Resume</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/index/img/core-img/favicon.ico">
+    <link rel="icon" href="img/favicon.png">
 
     <!-- Core Stylesheet -->
     <link href="index.css" rel="stylesheet">

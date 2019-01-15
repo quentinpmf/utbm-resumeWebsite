@@ -2294,11 +2294,11 @@ sup {
   top: -.5em; }
 
 a {
-  color: #007bff;
+  color: white;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
-    color: #0056b3;
+    color: white;
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
@@ -9104,9 +9104,9 @@ https://github.com/givanz/VvvebJs
     color: #555;
     overflow: hidden; }
     .tree ol li:hover {
-      color: #007bff; }
+      color: blue; }
     .tree ol li.active > label > span, .tree ol li.active > a > span {
-      color: #007bff; }
+      color: black; }
   .tree ol li.file {
     margin-left: -1px !important; }
     .tree ol li.file > label {
@@ -9269,10 +9269,23 @@ body {
     margin-bottom: 0rem;
     padding: 0.0rem 0.5rem; }
   #resume-editor #left-panel #resumemanager .header a {
-    color: #007bff; }
+    color: white; }
+#resume-editor #left-panel #resumemanager .tree {
+  background-color: #EDA04F; }
+#resume-editor #left-panel #resumemanager li {
+  color: white; }
+  #resume-editor #left-panel #filemanager .header a {
+  color: white; }
+#resume-editor #left-panel #resumemanager li:active {
+  color: black; }
+#resume-editor #left-panel #filemanager .tree {
+  background-color: #EDA04F;}
+#resume-editor #left-panel #filemanager li {
+  color: white; }
+#resume-editor #left-panel #filemanager li:active {
+  color: black; }
   #resume-editor #left-panel #resumemanager .tree {
     height: 350px;
-    padding: 0.5rem 0rem;
     overflow-y: auto;
     overflow-x: hidden; }
 
@@ -9798,3 +9811,43 @@ ul.autocomplete li.selected {
   color: #fff; }
 
 /*# sourceMappingURL=editor.css.map */
+
+/* surcharge QBo */
+#resumemanager .header, #filemanager .header{
+  background-color: #01110C;
+}
+
+#resumemanager a, #filemanager a{
+  text-decoration: none;
+  color:white;
+}
+
+#components-list
+{
+  background-color:#EDA04F;
+}
+
+#components-list label
+{
+  background-color: #01110C;
+  color:white;
+}
+
+#components-list a
+{
+  color:white;
+}
+
+#component-properties .header{
+  background-color: #01110C;
+  color:white;
+}
+
+#component-properties div {
+  background-color: #EDA04F;
+}
+
+#component-properties input {
+  border:1px solid black;
+  color:black;
+}

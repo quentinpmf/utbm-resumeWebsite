@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta name="description" content="">
+
+      <!-- Favicon -->
+      <link rel="icon" href="img/favicon.png">
+      
     <meta name="author" content="">
     <base href="">
     <title>Drag'n Resume</title>
@@ -66,15 +70,15 @@
 
 					<div class="btn-group float-right responsive-btns" role="group">
 		 			 <button id="mobile-view" data-view="mobile" class="btn btn-light"  title="Mobile view" data-vvveb-action="viewport">
-						  <i class="la la-mobile-phone"></i>
+						  &nbsp;
 					  </button>
 
 					  <button id="tablet-view"  data-view="tablet" class="btn btn-light"  title="Tablet view" data-vvveb-action="viewport">
-						  <i class="la la-tablet"></i>
+                          &nbsp;
 					  </button>
 
 					  <button id="desktop-view"  data-view="" class="btn btn-light"  title="Desktop view" data-vvveb-action="viewport">
-						  <i class="la la-laptop"></i>
+                          &nbsp;
 					  </button>
 
 					</div>
