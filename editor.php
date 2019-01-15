@@ -9,8 +9,11 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
     <base href="">
-    <title>magicResume</title>
-    
+    <title>Drag'n Resume</title>
+
+     <!-- FontAwesome JS -->
+     <script defer="" src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+
     <link href="css/editor.css" rel="stylesheet">
     <link href="css/line-awesome.css" rel="stylesheet">
     <?php
@@ -57,7 +60,7 @@
 					  </button>
 
                       <button class="btn btn-light" title="PDF" id="pdf-btn" data-vvveb-action="pdf" download="">
-                           <i class="la la-save"></i>
+                           <i class="far fa-file-pdf"></i>
                       </button>
 					</div>
 
@@ -669,10 +672,12 @@ $(document).ready(function()
 	Vvveb.FileManager.init();
     Vvveb.FileManager.addPages(
 	[
+        {name:"template0", title:"CV Vide",  url: "templates/CV/template0.html"},
 		{name:"narrow-jumbotron", title:"Jumbotron",  url: "templates/narrow-jumbotron/index.html"},
 		{name:"template1", title:"Template Développeur",  url: "templates/CV/template1.html"},
 		{name:"template2", title:"Template Développeur 2",  url: "templates/CV/template2.html"},
-        {name:"template3", title:"Template Plombier",  url: "templates/CV/template3.html"}
+        {name:"template3", title:"Template Plombier",  url: "templates/CV/template3.html"},
+        {name:"template4", title:"Template 4",  url: "templates/CV/template4.html"}
 	]);
 
 });
@@ -683,6 +688,13 @@ $(document).ready(function()
                 id="recast-webchat"
         ></script>
 </body>
+
+  <style>
+      .RecastAppExpander.open{
+          z-index: 15;
+      }
+  </style>
+
 </html>
 
 
