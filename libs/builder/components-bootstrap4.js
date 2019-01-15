@@ -1350,7 +1350,7 @@ Vvveb.Components.extend("_base", "html/progress", {
     classes: ["progress"],
     name: "Progress Bar",
     image: "icons/progressbar.svg",
-    html: '<div class="progress"><div class="progress-bar w-25"></div></div>',
+    html: '<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%">&nbsp;</div></div>',
     properties: [{
         name: "Background",
         key: "background",

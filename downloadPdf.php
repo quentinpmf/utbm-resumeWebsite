@@ -7,7 +7,7 @@ if( (isset($_POST['html']) && $_POST['html'] != "")
     && (isset($_POST['short_title']) && $_POST['short_title'] != "")
     && (isset($_POST['title']) && $_POST['title'] != "") ) {
     //chemin vers le dossier
-    $pathToFolder = "templates/CV/" . $_SESSION['UserId'] . "-" . $_SESSION['UserNom'];
+    $pathToFolder = "templates/CV/" . $_SESSION['UserId'];
     $nameFile = $_POST['short_title'] . ".html";
     $fullPathToFile = $pathToFolder . '/' . $nameFile;
 
