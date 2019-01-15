@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Magic resume</title>
+    <title>Drag'n Resume</title>
 
     <!-- Favicon -->
     <link rel="icon" href="assets/index/img/core-img/favicon.ico">
@@ -37,7 +37,7 @@
                 <div class="menu_area">
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <!-- Logo -->
-                        <a class="navbar-brand" href="#">Mr.</a>
+                        <span class="home_button" href="#"></span>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <!-- Menu Area -->
                         <div class="collapse navbar-collapse" id="ca-navbar">
@@ -78,9 +78,9 @@
         <div class="row h-100 align-items-center">
             <div class="col-12 col-md">
                 <div class="wellcome-heading">
-                    <h2>Magic Resume</h2>
-                    <h3>M</h3>
-                    <p>Tout ce dont vous avez besoin pour créer votre CV facilement.</p>
+                    <h2>Drag'n Resume</h2>
+                    <h3>Drag</h3>
+                    <p>Créez votre CV facilement à l'aide de notre outil Drag'n drop.</p>
                 </div>
                 <div class="get-start-area">
                     <!-- Signup btn -->
@@ -410,7 +410,7 @@
             <div class="offset-3 col-12 col-md-6 col-lg-3">
                 <div class="single-team-member">
                     <div class="member-image">
-                        <img src="assets/index/img/team-img/team-1.jpg" alt="">
+                        <img src="assets/index/img/team-img/team-4.jpg" alt="">
                         <div class="team-hover-effects">
                             <div class="team-social-icon">
                                 <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -467,10 +467,10 @@
                     <p><span>Adresse:</span> 12 Rue Thierry Mieg 90000 BELFORT</p>
                 </div>
                 <div class="phone-text">
-                    <p><span>Téléphone:</span> +33-3-22-32-02-58</p>
+                    <p><span>Téléphone:</span> 03-22-32-02-58</p>
                 </div>
                 <div class="email-text">
-                    <p><span>Email:</span> info@magic-resume.com</p>
+                    <p><span>Email:</span> info@dragn-resume.fr</p>
                 </div>
             </div>
             <div class="col-md-6">
@@ -517,7 +517,7 @@
 <footer class="footer-social-icon text-center section_padding_70 clearfix">
     <!-- footer logo -->
     <div class="footer-text">
-        <h2>Mr.</h2>
+        <h2>Drag'n Resume.</h2>
     </div>
     <!-- social icon-->
     <div class="footer-social-icon">
