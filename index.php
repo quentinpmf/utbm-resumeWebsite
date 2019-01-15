@@ -9,10 +9,10 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Magic resume</title>
+    <title>Drag'n Resume</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/index/img/core-img/favicon.ico">
+    <link rel="icon" href="img/favicon.png">
 
     <!-- Core Stylesheet -->
     <link href="index.css" rel="stylesheet">
@@ -37,7 +37,7 @@
                 <div class="menu_area">
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <!-- Logo -->
-                        <a class="navbar-brand" href="#">Mr.</a>
+                        <span class="home_button" href="#"></span>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <!-- Menu Area -->
                         <div class="collapse navbar-collapse" id="ca-navbar">
@@ -58,7 +58,7 @@
                     <?php
                         if(isset($_SESSION['UserEmail']))
                         {
-                            echo('<a href="login/logout.php">Déconnexion de '.$_SESSION["UserNom"].'</a>');
+                            echo('<a id="lien_user" style="color:white;" onclick="userOnClick()">Mon compte</a>');
                         }
                         else
                         {
@@ -78,9 +78,9 @@
         <div class="row h-100 align-items-center">
             <div class="col-12 col-md">
                 <div class="wellcome-heading">
-                    <h2>Magic Resume</h2>
-                    <h3>M</h3>
-                    <p>Tout ce dont vous avez besoin pour créer votre CV facilement.</p>
+                    <h2>Drag'n Resume</h2>
+                    <h3>Drag</h3>
+                    <p>Créez votre CV facilement à l'aide de notre outil Drag'n drop.</p>
                 </div>
                 <div class="get-start-area">
                     <!-- Signup btn -->
@@ -410,7 +410,7 @@
             <div class="offset-3 col-12 col-md-6 col-lg-3">
                 <div class="single-team-member">
                     <div class="member-image">
-                        <img src="assets/index/img/team-img/team-1.jpg" alt="">
+                        <img src="assets/index/img/team-img/team-4.jpg" alt="">
                         <div class="team-hover-effects">
                             <div class="team-social-icon">
                                 <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -467,10 +467,10 @@
                     <p><span>Adresse:</span> 12 Rue Thierry Mieg 90000 BELFORT</p>
                 </div>
                 <div class="phone-text">
-                    <p><span>Téléphone:</span> +33-3-22-32-02-58</p>
+                    <p><span>Téléphone:</span> 03-22-32-02-58</p>
                 </div>
                 <div class="email-text">
-                    <p><span>Email:</span> info@magic-resume.com</p>
+                    <p><span>Email:</span> info@dragn-resume.fr</p>
                 </div>
             </div>
             <div class="col-md-6">
@@ -513,11 +513,135 @@
 </section>
 <!-- ***** Contact Us Area End ***** -->
 
+
+<!-- export html modal-->
+<div class="modal fade" id="user-modal" tabindex="-1" role="dialog" aria-labelledby="user-modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mes informations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <input type="hidden" id="UserId" name="UserId" class="form-control" value="<?php echo($_SESSION['UserId']); ?>" required>
+                    </tr>
+                    <tr>
+                        <td width="10%">Nom</td>
+                        <td width="50%">
+                            <input type="text" id="UserNom" name="UserNom" class="form-control" value="<?php echo($_SESSION['UserNom']); ?>" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="10%">Prénom</td>
+                        <td width="50%"><input type="text" id="UserPrenom" name="UserPrenom" value="<?php echo($_SESSION['UserPrenom']); ?>" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td width="10%">Date de naissance</td>
+                        <td width="50%"><input type="date" id="UserDate" name="UserDate" value="<?php echo($_SESSION['UserDateNaissance']); ?>" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td width="10%">Adresse</td>
+                        <td width="50%"><input type="text" id="UserAdresse" name="UserAdresse" value="<?php echo($_SESSION['UserAdress']); ?>" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td width="10%">Code Postal</td>
+                        <td width="50%"><input type="text" id="UserCP" name="UserCP" value="<?php echo($_SESSION['UserCP']); ?>" class="form-control" required maxlength="5"></td>
+                    </tr>
+                    <tr>
+                        <td width="10%">Ville</td>
+                        <td width="50%"><input type="text" id="UserVille" name="UserVille" value="<?php echo($_SESSION['UserVille']); ?>" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td width="10%">Téléphone</td>
+                        <td width="50%"><input type="text" id="UserTel" name="UserTel" value="<?php echo($_SESSION['UserTel']); ?>" class="form-control" required maxlength="10"></td>
+                    </tr>
+                    <tr>
+                        <td width="10%">Email</td>
+                        <td width="50%"><input type="email" id="UserEmail" name="UserEmail" value="<?php echo($_SESSION['UserEmail']); ?>" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td width="10%">Mot de passe</td>
+                        <td width="50%"><input type="password" id="UserPassword" name="UserPassword" value="<?php echo($_SESSION['UserPassword']); ?>" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td width="20%">
+                            <button type="button" class="btn btn-success" onclick="changeUserInformations()">Enregistrer les modifications</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <table>
+                    <tr>
+                        <td width="80%"><button type="button" class="btn btn-danger" onclick="deleteUser(this)">Supprimer mon compte</button></td>
+                        <td width="20%"><a href="login/logout.php" type="button" class="btn btn-warning" onclick="deleteResume(this)">Se déconnecter</a></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function userOnClick()
+    {
+        //SHOW POPUP
+        $('#user-modal').modal('show');
+    }
+
+    function deleteUser()
+    {
+        var UserId = $('#UserId')[0].value;
+
+        $.ajax({
+            type: "POST",
+            url: 'deleteUser.php',
+            data: {test: 'test'},
+            success: function(data){
+                console.log('suppression d\'un utilisateur (id = ',UserId,')');
+                location.reload(true); //on recharge la page pour faire apparaitre le nouveau nom du CV dans "mes CVs"
+            }
+        });
+    }
+
+    function changeUserInformations()
+    {
+        var newUserNom = $('#UserNom')[0].value;
+        var newUserPrenom = $('#UserPrenom')[0].value;
+        var newUserDate = $('#UserDate')[0].value;
+        var newUserAdresse = $('#UserAdresse')[0].value;
+        var newUserCP = $('#UserCP')[0].value;
+        var newUserVille = $('#UserVille')[0].value;
+        var newUserTel = $('#UserTel')[0].value;
+        var newUserEmail = $('#UserEmail')[0].value;
+        var newUserPassword = $('#UserPassword')[0].value;
+
+        $.ajax({
+            type: "POST",
+            url: 'changeUserInfos.php',
+            data: {newUserNom: newUserNom, newUserPrenom: newUserPrenom, newUserDate: newUserDate, newUserAdresse: newUserAdresse, newUserCP: newUserCP, newUserVille: newUserVille, newUserTel: newUserTel, newUserEmail: newUserEmail, newUserPassword: newUserPassword },
+            success: function(data){
+                console.log('mise à jour des informations d\'un utilisateur');
+                location.reload(true); //on recharge la page
+            }
+        });
+    }
+</script>
+
 <!-- ***** Footer Area Start ***** -->
 <footer class="footer-social-icon text-center section_padding_70 clearfix">
     <!-- footer logo -->
     <div class="footer-text">
-        <h2>Mr.</h2>
+        <h2>Drag'n Resume.</h2>
     </div>
     <!-- social icon-->
     <div class="footer-social-icon">

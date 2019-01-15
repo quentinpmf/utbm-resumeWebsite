@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta name="description" content="">
+
+      <!-- Favicon -->
+      <link rel="icon" href="img/favicon.png">
+      
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
     <base href="">
-    <title>ResumeEditor</title>
-    
+    <title>Drag'n Resume</title>
+
+     <!-- FontAwesome JS -->
+     <script defer="" src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+
     <link href="css/editor.css" rel="stylesheet">
     <link href="css/line-awesome.css" rel="stylesheet">
     <?php
@@ -24,7 +30,7 @@
 	<div id="resume-editor">
 				
 				<div id="top-panel">
-					<span class="float-left" id="logo">[Logo]</span>
+					<span class="float-left" id="logo"><a href="index.php"><img src="img/logo2.png"></a></span>
 					
 					
 					<div class="btn-group mr-3" role="group">
@@ -48,33 +54,37 @@
 					  </button>
 
 					  <!-- <button class="btn btn-light" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e"> -->
-					  <button class="btn btn-light" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e">
+					  <button class="btn btn-light" title="Sauvegarder le CV    (Ctrl + E)" id="save-btn" data-vvveb-action="save" data-vvveb-shortcut="ctrl+e">
 						  <i class="la la-save"></i>
 					  </button>
 					  
 					  <button class="btn btn-light" title="Download" id="download-btn" data-vvveb-action="download" download="index.html">
 						  <i class="la la-download"></i>
 					  </button>
-					</div>	
+
+                      <button class="btn btn-light" title="PDF" id="pdf-btn" data-vvveb-action="pdf" download="">
+                           <i class="far fa-file-pdf"></i>
+                      </button>
+					</div>
 
 
-					<div class="btn-group float-right" role="group">
+					<div class="btn-group float-right responsive-btns" role="group">
 		 			 <button id="mobile-view" data-view="mobile" class="btn btn-light"  title="Mobile view" data-vvveb-action="viewport">
-						  <i class="ion-iphone"></i>
+						  &nbsp;
 					  </button>
 
 					  <button id="tablet-view"  data-view="tablet" class="btn btn-light"  title="Tablet view" data-vvveb-action="viewport">
-						  <i class="ion-ipad"></i>
+                          &nbsp;
 					  </button>
-					  
+
 					  <button id="desktop-view"  data-view="" class="btn btn-light"  title="Desktop view" data-vvveb-action="viewport">
-						  <i class="ion-monitor"></i>
+                          &nbsp;
 					  </button>
 
 					</div>
-										
-				</div>	
-				
+
+				</div>
+
 				<div id="left-panel">
 
 					<!-- TODO Affichage mes CV comme Templates -->
@@ -94,6 +104,15 @@
 
 					  <div id="components">
 
+						<div class="header">
+
+							  <input class="form-control form-control-sm" placeholder="Recherche" type="text" id="component-search"  data-vvveb-action="componentSearch" data-vvveb-on="keyup">
+							  <button id="clear-backspace"  data-vvveb-action="clearComponentSearch">
+								  <i class="la la-close"></i>
+							  </button>
+
+						</div>
+
 						<div id="components-sidepane" class="sidepane">
 						  <div>
 
@@ -110,10 +129,10 @@
 				<div id="canvas">
 					<div id="iframe-wrapper">
 						<div id="iframe-layer">
-							
+
 							<div id="highlight-box">
 								<div id="highlight-name"></div>
-								
+
 							</div>
 
 							<div id="select-box">
@@ -127,48 +146,29 @@
 								</div>
 
 								<div id="select-actions">
-									<a id="drag-box" href="" title="Drag element"><i class="ion-arrow-move"></i></a>
-									<a id="parent-box" href="" title="Select parent"><i class="ion-reply"></i></a>
+									<a id="drag-box" href="" title="Drag element"><i class="la la-arrows"></i></a>
+									<a id="parent-box" href="" title="Select parent"><i class="la la-level-down la-rotate-180"></i></a>
 									
-									<a id="up-box" href="" title="Move element up"><i class="ion-arrow-up-a"></i></a>
-									<a id="down-box" href="" title="Move element down"><i class="ion-arrow-down-a"></i></a>
-									<a id="clone-box" href="" title="Clone element"><i class="ion-ios-copy"></i></a>
-									<a id="delete-box" href="" title="Remove element"><i class="ion-trash-a"></i></a>
+									<a id="up-box" href="" title="Move element up"><i class="la la-arrow-up"></i></a>
+									<a id="down-box" href="" title="Move element down"><i class="la la-arrow-down"></i></a>
+									<a id="clone-box" href="" title="Clone element"><i class="la la-copy"></i></a>
+									<a id="delete-box" href="" title="Remove element"><i class="la la-trash"></i></a>
 								</div>
 							</div>
-							
-						
+
+
 						</div>
 						<iframe src="about:none" id="iframe1"></iframe>
 					</div>
-					
-					
+
+
 				</div>
 
 				<div id="right-panel">
 					<div id="component-properties">
 					</div>
 				</div>
-				
-				<div id="bottom-panel">
 
-				<div class="btn-group" role="group">
-
-		 			 <button id="code-editor-btn btn-sm" data-view="mobile" class="btn btn-light btn-sm"  title="Code editor" data-vvveb-action="toggleEditor">
-						  <i class="ion-code"></i> Code editor
-					  </button>
-					 
-						<div id="toggleEditorJsExecute" class="custom-control custom-checkbox mt-1" style="display:none">
-							<input type="checkbox" class="custom-control-input" id="customCheck" name="example1" data-vvveb-action="toggleEditorJsExecute">
-							<label class="custom-control-label" for="customCheck"><small>Run code on edit</small></label>
-						</div>
-					</div>
-					
-					<div id="vvveb-code-editor">
-						<textarea class="form-control"></textarea>
-					<div>
-
-				</div>	
 			</div>
 		</div>
 
@@ -176,26 +176,26 @@
 <!-- templates -->
 
 <script id="vvveb-input-textinput" type="text/html">
-	
+
 	<div>
 		<input name="{%=key%}" type="text" class="form-control"/>
 	</div>
-	
+
 </script>
 
 <script id="vvveb-input-checkboxinput" type="text/html">
-	
+
 	<div class="custom-control custom-checkbox">
 		  <input name="{%=key%}" class="custom-control-input" type="checkbox" id="{%=key%}_check">
 		  <label class="custom-control-label" for="{%=key%}_check">{% if (typeof text !== 'undefined') { %} {%=text%} {% } %}</label>
 	</div>
-	
+
 </script>
 
 <script id="vvveb-input-radioinput" type="text/html">
-	
+
 	<div>
-	
+
 		{% for ( var i = 0; i < options.length; i++ ) { %}
 
 		<label class="custom-control custom-radio  {% if (typeof inline !== 'undefined' && inline == true) { %}custom-control-inline{% } %}"  title="{%=options[i].title%}">
@@ -206,30 +206,30 @@
 		{% } %}
 
 	</div>
-	
+
 </script>
 
 <script id="vvveb-input-radiobuttoninput" type="text/html">
-	
+
 	<div class="btn-group btn-group-toggle  {%if (extraclass) { %}{%=extraclass%}{% } %} clearfix" data-toggle="buttons">
-	
+
 		{% for ( var i = 0; i < options.length; i++ ) { %}
 
-		<label class="btn btn-light  {%if (options[i].checked) { %}active{% } %}" for="{%=key%}{%=i%} " title="{%=options[i].title%}">
+		<label class="btn  btn-outline-primary  {%if (options[i].checked) { %}active{% } %}" for="{%=key%}{%=i%} " title="{%=options[i].title%}">
 		  <input name="{%=key%}" class="custom-control-input" type="radio" value="{%=options[i].value%}" id="{%=key%}{%=i%}" {%if (options[i].checked) { %}checked="{%=options[i].checked%}"{% } %}>
 		  {%if (options[i].icon) { %}<i class="{%=options[i].icon%}"></i>{% } %}
 		  {%=options[i].text%}
 		</label>
 
 		{% } %}
-				
+
 	</div>
-	
+
 </script>
 
 
 <script id="vvveb-input-toggle" type="text/html">
-	
+
     <div class="toggle">
         <input type="checkbox" name="{%=key%}" value="{%=on%}" data-value-off="{%=off%}" data-value-on="{%=on%}" class="toggle-checkbox" id="{%=key%}">
         <label class="toggle-label" for="{%=key%}">
@@ -237,16 +237,16 @@
             <span class="toggle-switch"></span>
         </label>
     </div>
-	
+
 </script>
 
 <script id="vvveb-input-header" type="text/html">
 
 		<h6 class="header">{%=header%}</h6>
-	
+
 </script>
 
-	
+
 <script id="vvveb-input-select" type="text/html">
 
 	<div>
@@ -256,9 +256,9 @@
 			<option value="{%=options[i].value%}">{%=options[i].text%}</option>
 			{% } %}
 		</select>
-	
+
 	</div>
-	
+
 </script>
 
 
@@ -272,7 +272,7 @@
 				<input name="{%=key%}_{%=i%}" type="text" class="form-control" value="{%=options[i].text%}"/>
 				<div class="input-group-append">
 					<button class="input-group-text btn btn-sm btn-danger">
-						<i class="ion-trash-a"></i>
+						<i class="la la-trash la-lg"></i>
 					</button>
 				</div>
 			  </div>
@@ -283,31 +283,31 @@
 
 		{% if (typeof hide_remove === 'undefined') { %}
 		<div class="col-12">
-		
+
 			<button class="btn btn-sm btn-outline-primary">
-				<i class="ion-trash-a"></i> Add new
+				<i class="la la-trash la-lg"></i> Add new
 			</button>
-			
+
 		</div>
 		{% } %}
-			
+
 	</div>
-	
+
 </script>
 
 <script id="vvveb-input-grid" type="text/html">
 
 	<div class="row">
 		<div class="mb-1 col-12">
-		
+
 			<label>Flexbox</label>
 			<select class="form-control custom-select" name="col">
-				
+
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
 				<option value="{%=i%}" {% if ((typeof col !== 'undefined') && col == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
-				
+
 			</select>
 			<br/>
 		</div>
@@ -315,71 +315,71 @@
 		<div class="col-6">
 			<label>Extra small</label>
 			<select class="form-control custom-select" name="col-xs">
-				
+
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
 				<option value="{%=i%}" {% if ((typeof col_xs !== 'undefined') && col_xs == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
-				
+
 			</select>
 			<br/>
 		</div>
-		
+
 		<div class="col-6">
 			<label>Small</label>
 			<select class="form-control custom-select" name="col-sm">
-				
+
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
 				<option value="{%=i%}" {% if ((typeof col_sm !== 'undefined') && col_sm == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
-				
+
 			</select>
 			<br/>
 		</div>
-		
+
 		<div class="col-6">
 			<label>Medium</label>
 			<select class="form-control custom-select" name="col-md">
-				
+
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
 				<option value="{%=i%}" {% if ((typeof col_md !== 'undefined') && col_md == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
-				
+
 			</select>
 			<br/>
 		</div>
-		
+
 		<div class="col-6 mb-1">
 			<label>Large</label>
 			<select class="form-control custom-select" name="col-lg">
-				
+
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
 				<option value="{%=i%}" {% if ((typeof col_lg !== 'undefined') && col_lg == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
-				
+
 			</select>
 			<br/>
 		</div>
-		
+
 		{% if (typeof hide_remove === 'undefined') { %}
 		<div class="col-12">
-		
+
 			<button class="btn btn-sm btn-outline-light text-danger">
-				<i class="ion-trash-a"></i> Remove
+				<i class="la la-trash la-lg"></i> Remove
 			</button>
-			
+
 		</div>
 		{% } %}
-		
+
 	</div>
-	
+
 </script>
 
 <script id="vvveb-input-textvalue" type="text/html">
-	
+
 	<div class="row">
 		<div class="col-6 mb-1">
 			<label>Value</label>
@@ -393,49 +393,49 @@
 
 		{% if (typeof hide_remove === 'undefined') { %}
 		<div class="col-12">
-		
+
 			<button class="btn btn-sm btn-outline-light text-danger">
-				<i class="ion-trash-a"></i> Remove
+				<i class="la la-trash la-lg"></i> Remove
 			</button>
-			
+
 		</div>
 		{% } %}
 
 	</div>
-	
+
 </script>
 
 <script id="vvveb-input-rangeinput" type="text/html">
-	
+
 	<div>
 		<input name="{%=key%}" type="range" min="{%=min%}" max="{%=max%}" step="{%=step%}" class="form-control"/>
 	</div>
-	
+
 </script>
 
 <script id="vvveb-input-imageinput" type="text/html">
-	
+
 	<div>
 		<input name="{%=key%}" type="text" class="form-control"/>
 		<input name="file" type="file" class="form-control"/>
 	</div>
-	
+
 </script>
 
 <script id="vvveb-input-colorinput" type="text/html">
-	
+
 	<div>
 		<input name="{%=key%}" type="color" value="{%=value%}" pattern="#[a-f0-9]{6}" class="form-control"/>
 	</div>
-	
+
 </script>
 
 <script id="vvveb-input-numberinput" type="text/html">
 	<div>
-		<input name="{%=key%}" type="number" value="{%=value%}" 
-			  {% if (typeof min !== 'undefined' && min != false) { %}min="{%=min%}"{% } %} 
-			  {% if (typeof max !== 'undefined' && max != false) { %}max="{%=max%}"{% } %} 
-			  {% if (typeof step !== 'undefined' && step != false) { %}step="{%=step%}"{% } %} 
+		<input name="{%=key%}" type="number" value="{%=value%}"
+			  {% if (typeof min !== 'undefined' && min != false) { %}min="{%=min%}"{% } %}
+			  {% if (typeof max !== 'undefined' && max != false) { %}max="{%=max%}"{% } %}
+			  {% if (typeof step !== 'undefined' && step != false) { %}step="{%=step%}"{% } %}
 		class="form-control"/>
 	</div>
 </script>
@@ -443,17 +443,17 @@
 <script id="vvveb-input-button" type="text/html">
 	<div>
 		<button class="btn btn-sm btn-primary">
-			<i class="ion-trash-a"></i> {%=text%}
+			<i class="la  {% if (typeof icon !== 'undefined') { %} {%=icon%} {% } else { %} la-plus {% } %} la-lg"></i> {%=text%}
 		</button>
-	</div>		
+	</div>
 </script>
 
 <script id="vvveb-input-cssunitinput" type="text/html">
 	<div class="input-group" id="cssunit-{%=key%}">
-		<input name="number" type="number" value="{%=value%}" 
-			  {% if (typeof min !== 'undefined' && min != false) { %}min="{%=min%}"{% } %} 
-			  {% if (typeof max !== 'undefined' && max != false) { %}max="{%=max%}"{% } %} 
-			  {% if (typeof step !== 'undefined' && step != false) { %}step="{%=step%}"{% } %} 
+		<input name="number" type="number" value="{%=value%}"
+			  {% if (typeof min !== 'undefined' && min != false) { %}min="{%=min%}"{% } %}
+			  {% if (typeof max !== 'undefined' && max != false) { %}max="{%=max%}"{% } %}
+			  {% if (typeof step !== 'undefined' && step != false) { %}step="{%=step%}"{% } %}
 		class="form-control"/>
 		 <div class="input-group-append">
 		<select class="form-control custom-select small-arrow" name="unit">
@@ -465,11 +465,11 @@
 		</select>
 		</div>
 	</div>
-	
+
 </script>
 
 <script id="vvveb-resumemanager-page" type="text/html">
-	<li data-url="{%=url%}" data-page="{%=name%}" data-title="{%=title%}">
+	<li data-id="{%=id%}" data-url="{%=url%}" data-page="{%=name%}" data-title="{%=title%}">
 		<label for="{%=name%}"><span>{%=title%}</span></label> <input type="checkbox" checked id="{%=name%}" />
 	</li>
 </script>
@@ -488,50 +488,97 @@
 
 <script id="vvveb-input-sectioninput" type="text/html">
 
-		<label class="header" data-header="{%=key%}" for="header_{%=key%}"><span>&ensp;{%=header%}</span> <div class="header-arrow"></div></label> 
-		<input class="header_check" type="checkbox" {% if (typeof expanded !== 'undefined' && expanded == false) { %} {% } else { %}checked="true"{% } %} id="header_{%=key%}"> 
-		<div class="section" data-section="{%=key%}"></div>		
-	
+		<label class="header" data-header="{%=key%}" for="header_{%=key%}"><span>&ensp;{%=header%}</span> <div class="header-arrow"></div></label>
+		<input class="header_check" type="checkbox" {% if (typeof expanded !== 'undefined' && expanded == false) { %} {% } else { %}checked="true"{% } %} id="header_{%=key%}">
+		<div class="section" data-section="{%=key%}"></div>
+
 </script>
 
 
 <script id="vvveb-property" type="text/html">
 
 	<div class="form-group {% if (typeof col !== 'undefined' && col != false) { %} col-sm-{%=col%} d-inline-block {% } else { %}row{% } %}" data-key="{%=key%}" {% if (typeof group !== 'undefined' && group != null) { %}data-group="{%=group%}" {% } %}>
-		
+
 		{% if (typeof name !== 'undefined' && name != false) { %}<label class="{% if (typeof inline === 'undefined' ) { %}col-sm-4{% } %} control-label" for="input-model">{%=name%}</label>{% } %}
-		
+
 		<div class="{% if (typeof inline === 'undefined') { %}col-sm-{% if (typeof name !== 'undefined' && name != false) { %}8{% } else { %}12{% } } %} input"></div>
-		
-	</div>		 
-	
+
+	</div>
+
 </script>
 
 <!--// end templates -->
 
 
 <!-- export html modal-->
-<div class="modal fade" id="textarea-modal" tabindex="-1" role="dialog" aria-labelledby="textarea-modal" aria-hidden="true">
+<div class="modal fade" id="manage-modal" tabindex="-1" role="dialog" aria-labelledby="manage-modal" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Export html</h5>
+        <h5 class="modal-title">Modification du titre du CV</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        
-        <textarea rows="25" cols="150" class="form-control"></textarea>
-      
+          <table>
+              <tr>
+                  <input type="hidden" id="resumeId" name="resumeId" class="form-control" required>
+                  <td width="100%">
+                      <input type="text" id="resumeTitle" name="resumeTitle" class="form-control" required>
+                  </td>
+                  <td width="20%">
+                      <button type="button" class="btn btn-success" onclick="changeResumeTitle()">Enregistrer</button>
+                  </td>
+              </tr>
+          </table>
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onclick="deleteResume(this)">Supprimer ce CV</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer la pop-up</button>
       </div>
+
     </div>
   </div>
 </div>
-	
+
+<script>
+    function deleteResume()
+    {
+        var resumeId = $('#resumeId')[0].value;
+        console.log('resumeId = ',resumeId);
+
+        $.ajax({
+            type: "POST",
+            url: 'deleteResume.php',
+            data: {id: resumeId},
+            success: function(data){
+                console.log('suppression d\'un CV');
+                location.reload(true); //on recharge la page pour faire apparaitre le nouveau nom du CV dans "mes CVs"
+            }
+        });
+    }
+
+    function changeResumeTitle()
+    {
+        var newResumeTitle = $('#resumeTitle')[0].value;
+        console.log('newResumeTitle = ',newResumeTitle);
+
+        var resumeId = $('#resumeId')[0].value;
+        console.log('resumeId = ',resumeId);
+
+        $.ajax({
+            type: "POST",
+            url: 'changeResumeName.php',
+            data: {id: resumeId, title: newResumeTitle},
+            success: function(data){
+                console.log('renommage d\'un CV');
+                location.reload(true); //on recharge la page pour faire apparaitre le nouveau nom du CV dans "mes CVs"
+            }
+        });
+    }
+</script>
 <!-- jquery-->
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.hotkeys.js"></script>
@@ -579,7 +626,7 @@ if(isset($_SESSION['UserId']) && $_SESSION['UserId'] != "")
 ?>
 
 <script>
-$(document).ready(function() 
+$(document).ready(function()
 {
     var userLastResumeLocation = <?php echo json_encode($_SESSION['UserLastResumeLocation']); ?> ;
     var nbResume = <?php echo json_encode(count($tab)); ?> ;
@@ -608,25 +655,39 @@ $(document).ready(function()
     var tab = <?php echo json_encode($tab); ?> ;
     for (i = 0; i < nbResume; i++)
     {
+        var id = tab[i]['id'];
         var short_title = tab[i]['short_title'];
         var title = tab[i]['title'];
         var resume_location = tab[i]['resume_location'];
-        Vvveb.ResumeManager.addResume(short_title,title,resume_location);
+        Vvveb.ResumeManager.addResume(id, short_title,title,resume_location);
     }
 
 	Vvveb.FileManager.init();
     Vvveb.FileManager.addPages(
 	[
+        {name:"template0", title:"CV Vide",  url: "templates/CV/template0.html"},
 		{name:"narrow-jumbotron", title:"Jumbotron",  url: "templates/narrow-jumbotron/index.html"},
-		{name:"template1", title:"Template CV 1",  url: "templates/CV/template1.html"},
-		{name:"template2", title:"Template CV 2",  url: "templates/CV/template2.html"},
-		{name:"template3", title:"Template CV 3",  url: "templates/CV/template3.html"},
-		{name:"template4", title:"Template CV 4",  url: "templates/CV/template4.html"}
+		{name:"template1", title:"Template Développeur",  url: "templates/CV/template1.html"},
+		{name:"template2", title:"Template Développeur 2",  url: "templates/CV/template2.html"},
+        {name:"template3", title:"Template Ingénieur SI",  url: "templates/CV/template3.html"},
+        {name:"template4", title:"Template Plombier",  url: "templates/CV/template4.html"}
 	]);
 
 });
 </script>
+        <script src="https://cdn.recast.ai/webchat/webchat.js"
+                channelId="e36cb074-9a3f-48aa-bb48-8fc86e9b2c42"
+                token="11088d740cf3bf1668630ee094b10013"
+                id="recast-webchat"
+        ></script>
 </body>
+
+  <style>
+      .RecastAppExpander.open{
+          z-index: 15;
+      }
+  </style>
+
 </html>
 
 

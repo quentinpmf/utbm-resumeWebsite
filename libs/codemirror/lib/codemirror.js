@@ -2162,6 +2162,7 @@ function updateLineForChanges(cm, lineView, lineN, dims) {
     if (type == "text") { updateLineText(cm, lineView) }
     else if (type == "gutter") { updateLineGutter(cm, lineView, lineN, dims) }
     else if (type == "class") { updateLineClasses(cm, lineView) }
+    else if (type == "widget") { updateLineWidgets(cm, lineView, dims) }
   }
   lineView.changes = null
 }
@@ -2270,6 +2271,16 @@ function updateLineGutter(cm, lineView, lineN, dims) {
   }
 }
 
+function updateLineWidgets(cm, lineView, dims) {
+  if (lineView.alignable) { lineView.alignable = null }
+  for (var node = lineView.node.firstChild, next = (void 0); node; node = next) {
+    next = node.nextSibling
+    if (node.className == "CodeMirror-linewidget")
+      { lineView.node.removeChild(node) }
+  }
+  insertLineWidgets(cm, lineView, dims)
+}
+
 // Build a line's DOM representation from scratch
 function buildLineElement(cm, lineView, lineN, dims) {
   var built = getLineContent(cm, lineView)
@@ -2279,9 +2290,75 @@ function buildLineElement(cm, lineView, lineN, dims) {
 
   updateLineClasses(cm, lineView)
   updateLineGutter(cm, lineView, lineN, dims)
+  insertLineWidgets(cm, lineView, dims)
   return lineView.node
 }
 
+// A lineView may contain multiple logical lines (when merged by
+// collapsed spans). The widgets for all of them need to be drawn.
+function insertLineWidgets(cm, lineView, dims) {
+  insertLineWidgetsFor(cm, lineView.line, lineView, dims, true)
+  if (lineView.rest) { for (var i = 0; i < lineView.rest.length; i++)
+    { insertLineWidgetsFor(cm, lineView.rest[i], lineView, dims, false) } }
+}
+
+function insertLineWidgetsFor(cm, line, lineView, dims, allowAbove) {
+  if (!line.widgets) { return }
+  var wrap = ensureLineWrapped(lineView)
+  for (var i = 0, ws = line.widgets; i < ws.length; ++i) {
+    var widget = ws[i], node = elt("div", [widget.node], "CodeMirror-linewidget")
+    if (!widget.handleMouseEvents) { node.setAttribute("cm-ignore-events", "true") }
+    positionLineWidget(widget, node, lineView, dims)
+    cm.display.input.setUneditable(node)
+    if (allowAbove && widget.above)
+      { wrap.insertBefore(node, lineView.gutter || lineView.text) }
+    else
+      { wrap.appendChild(node) }
+    signalLater(widget, "redraw")
+  }
+}
+
+function positionLineWidget(widget, node, lineView, dims) {
+  if (widget.noHScroll) {
+    ;(lineView.alignable || (lineView.alignable = [])).push(node)
+    var width = dims.wrapperWidth
+    node.style.left = dims.fixedPos + "px"
+    if (!widget.coverGutter) {
+      width -= dims.gutterTotalWidth
+      node.style.paddingLeft = dims.gutterTotalWidth + "px"
+    }
+    node.style.width = width + "px"
+  }
+  if (widget.coverGutter) {
+    node.style.zIndex = 5
+    node.style.position = "relative"
+    if (!widget.noHScroll) { node.style.marginLeft = -dims.gutterTotalWidth + "px" }
+  }
+}
+
+function widgetHeight(widget) {
+  if (widget.height != null) { return widget.height }
+  var cm = widget.doc.cm
+  if (!cm) { return 0 }
+  if (!contains(document.body, widget.node)) {
+    var parentStyle = "position: relative;"
+    if (widget.coverGutter)
+      { parentStyle += "margin-left: -" + cm.display.gutters.offsetWidth + "px;" }
+    if (widget.noHScroll)
+      { parentStyle += "width: " + cm.display.wrapper.clientWidth + "px;" }
+    removeChildrenAndAdd(cm.display.measure, elt("div", [widget.node], null, parentStyle))
+  }
+  return widget.height = widget.node.parentNode.offsetHeight
+}
+
+// Return true when the given mouse event happened in a widget
+function eventInWidget(display, e) {
+  for (var n = e_target(e); n != display.wrapper; n = n.parentNode) {
+    if (!n || (n.nodeType == 1 && n.getAttribute("cm-ignore-events") == "true") ||
+        (n.parentNode == display.sizer && n != display.mover))
+      { return true }
+  }
+}
 
 // POSITION MEASUREMENT
 
@@ -2561,6 +2638,13 @@ function pageScrollX() {
 function pageScrollY() {
   if (chrome && android) { return -(document.body.getBoundingClientRect().top - parseInt(getComputedStyle(document.body).marginTop)) }
   return window.pageYOffset || (document.documentElement || document.body).scrollTop
+}
+
+function widgetTopHeight(lineObj) {
+  var height = 0
+  if (lineObj.widgets) { for (var i = 0; i < lineObj.widgets.length; ++i) { if (lineObj.widgets[i].above)
+    { height += widgetHeight(lineObj.widgets[i]) } } }
+  return height
 }
 
 // Converts a {top, bottom, left, right} box from line-local
@@ -2900,6 +2984,27 @@ function getDimensions(cm) {
 // result.
 function compensateForHScroll(display) {
   return display.scroller.getBoundingClientRect().left - display.sizer.getBoundingClientRect().left
+}
+
+// Returns a function that estimates the height of a line, to use as
+// first approximation until the line becomes visible (and is thus
+// properly measurable).
+function estimateHeight(cm) {
+  var th = textHeight(cm.display), wrapping = cm.options.lineWrapping
+  var perLine = wrapping && Math.max(5, cm.display.scroller.clientWidth / charWidth(cm.display) - 3)
+  return function (line) {
+    if (lineIsHidden(cm.doc, line)) { return 0 }
+
+    var widgetsHeight = 0
+    if (line.widgets) { for (var i = 0; i < line.widgets.length; i++) {
+      if (line.widgets[i].height) { widgetsHeight += line.widgets[i].height }
+    } }
+
+    if (wrapping)
+      { return widgetsHeight + (Math.ceil(line.text.length / perLine) || 1) * th }
+    else
+      { return widgetsHeight + th }
+  }
 }
 
 function estimateLineHeights(cm) {

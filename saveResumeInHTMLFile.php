@@ -14,7 +14,7 @@
             && (isset($_POST['title']) && $_POST['title'] != "") )
         {
             //chemin vers le dossier
-            $pathToFolder = "templates/CV/".$_SESSION['UserId']."-".$_SESSION['UserNom'];
+            $pathToFolder = "templates/CV/".$_SESSION['UserId'];
             $nameFile = $_POST['short_title'].".html";
             $fullPathToFile = $pathToFolder.'/'.$nameFile;
             //on regarde si le dossier existe déja sinon on le crée.
@@ -44,8 +44,8 @@
                 $req2=$bdd->prepare("INSERT INTO users_resumes(user_id,short_title,title,resume_location) VALUES (:UserId,:ShortTitle,:Title,:ResumeLocation)");
                 $req2->execute(array(
                     'UserId'=>$_SESSION['UserId'],
-                    'ShortTitle'=>$_POST['short_title'],
-                    'Title'=>$_POST['title'],
+                    'ShortTitle'=>suppr_accents($_POST['short_title']),
+                    'Title'=>suppr_accents($_POST['title']),
                     'ResumeLocation'=>$fullPathToFile
                 ));
             }
@@ -58,6 +58,30 @@
             {
                 $_SESSION['UserLastResumeLocation'] = $fullPathToFile;
             }
+        }
+
+        /**
+         * Supprimer les accents
+         *
+         * @param string $str chaîne de caractères avec caractères accentués
+         * @param string $encoding encodage du texte (exemple : utf-8, ISO-8859-1 ...)
+         */
+        function suppr_accents($str, $encoding='utf-8')
+        {
+            // transformer les caractères accentués en entités HTML
+            $str = htmlentities($str, ENT_NOQUOTES, $encoding);
+
+            // remplacer les entités HTML pour avoir juste le premier caractères non accentués
+            // Exemple : "&ecute;" => "e", "&Ecute;" => "E", "à" => "a" ...
+            $str = preg_replace('#&([A-za-z])(?:acute|grave|cedil|circ|orn|ring|slash|th|tilde|uml);#', '\1', $str);
+
+            // Remplacer les ligatures tel que : , Æ ...
+            // Exemple "œ" => "oe"
+            $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str);
+            // Supprimer tout le reste
+            $str = preg_replace('#&[^;]+;#', '', $str);
+
+            return $str;
         }
     ?>
 </body>
