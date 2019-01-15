@@ -102,7 +102,7 @@
 
 						<div class="header">
 
-							  <input class="form-control form-control-sm" placeholder="" type="text" id="component-search"  data-vvveb-action="componentSearch" data-vvveb-on="keyup">
+							  <input class="form-control form-control-sm" placeholder="Recherche" type="text" id="component-search"  data-vvveb-action="componentSearch" data-vvveb-on="keyup">
 							  <button id="clear-backspace"  data-vvveb-action="clearComponentSearch">
 								  <i class="la la-close"></i>
 							  </button>
