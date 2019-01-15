@@ -410,7 +410,7 @@
             <div class="offset-3 col-12 col-md-6 col-lg-3">
                 <div class="single-team-member">
                     <div class="member-image">
-                        <img src="assets/index/img/team-img/team-1.jpg" alt="">
+                        <img src="assets/index/img/team-img/team-4.jpg" alt="">
                         <div class="team-hover-effects">
                             <div class="team-social-icon">
                                 <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -467,10 +467,10 @@
                     <p><span>Adresse:</span> 12 Rue Thierry Mieg 90000 BELFORT</p>
                 </div>
                 <div class="phone-text">
-                    <p><span>Téléphone:</span> +33-3-22-32-02-58</p>
+                    <p><span>Téléphone:</span> 03-22-32-02-58</p>
                 </div>
                 <div class="email-text">
-                    <p><span>Email:</span> info@magic-resume.com</p>
+                    <p><span>Email:</span> info@dragn-resume.fr</p>
                 </div>
             </div>
             <div class="col-md-6">
