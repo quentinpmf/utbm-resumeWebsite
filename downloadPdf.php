@@ -21,5 +21,5 @@ if( (isset($_POST['html']) && $_POST['html'] != "")
     //fermeture du fichier html
     fclose($myfile);
 
-    shell_exec("\"D:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe\" -B 0 -L 0 -R 0 -T 0 -d 100 --viewport-size 827x1170 ./" . $fullPathToFile . " " . $_POST['short_title'] . ".pdf");
+    shell_exec("\"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe\" -B 0 -L 0 -R 0 -T 0 -d 100 --viewport-size 827x1170 ./" . $fullPathToFile . " " . $_POST['short_title'] . ".pdf");
 }

@@ -7,6 +7,7 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
     <base href="">
     <title>Drag'n Resume</title>
 
@@ -64,17 +65,17 @@
 					</div>
 
 
-					<div class="btn-group float-right responsive-btns" role="group">
+					<div class="btn-group float-right" role="group">
 		 			 <button id="mobile-view" data-view="mobile" class="btn btn-light"  title="Mobile view" data-vvveb-action="viewport">
-						  <i class="la la-mobile-phone"></i>
+						  <i class="ion-iphone"></i>
 					  </button>
 
 					  <button id="tablet-view"  data-view="tablet" class="btn btn-light"  title="Tablet view" data-vvveb-action="viewport">
-						  <i class="la la-tablet"></i>
+						  <i class="ion-ipad"></i>
 					  </button>
 
 					  <button id="desktop-view"  data-view="" class="btn btn-light"  title="Desktop view" data-vvveb-action="viewport">
-						  <i class="la la-laptop"></i>
+						  <i class="ion-monitor"></i>
 					  </button>
 
 					</div>
@@ -99,15 +100,6 @@
 					  </div>
 
 					  <div id="components">
-
-						<div class="header">
-
-							  <input class="form-control form-control-sm" placeholder="Recherche" type="text" id="component-search"  data-vvveb-action="componentSearch" data-vvveb-on="keyup">
-							  <button id="clear-backspace"  data-vvveb-action="clearComponentSearch">
-								  <i class="la la-close"></i>
-							  </button>
-
-						</div>
 
 						<div id="components-sidepane" class="sidepane">
 						  <div>
@@ -142,13 +134,13 @@
 								</div>
 
 								<div id="select-actions">
-									<a id="drag-box" href="" title="Drag element"><i class="la la-arrows"></i></a>
-									<a id="parent-box" href="" title="Select parent"><i class="la la-level-down la-rotate-180"></i></a>
-									
-									<a id="up-box" href="" title="Move element up"><i class="la la-arrow-up"></i></a>
-									<a id="down-box" href="" title="Move element down"><i class="la la-arrow-down"></i></a>
-									<a id="clone-box" href="" title="Clone element"><i class="la la-copy"></i></a>
-									<a id="delete-box" href="" title="Remove element"><i class="la la-trash"></i></a>
+									<a id="drag-box" href="" title="Drag element"><i class="ion-arrow-move"></i></a>
+									<a id="parent-box" href="" title="Select parent"><i class="ion-reply"></i></a>
+
+									<a id="up-box" href="" title="Move element up"><i class="ion-arrow-up-a"></i></a>
+									<a id="down-box" href="" title="Move element down"><i class="ion-arrow-down-a"></i></a>
+									<a id="clone-box" href="" title="Clone element"><i class="ion-ios-copy"></i></a>
+									<a id="delete-box" href="" title="Remove element"><i class="ion-trash-a"></i></a>
 								</div>
 							</div>
 
@@ -170,7 +162,7 @@
 				<div class="btn-group" role="group">
 
 		 			 <button id="code-editor-btn btn-sm" data-view="mobile" class="btn btn-light btn-sm"  title="Code editor" data-vvveb-action="toggleEditor">
-						  <i class="la la-code"></i> Code editor
+						  <i class="ion-code"></i> Code editor
 					  </button>
 
 						<div id="toggleEditorJsExecute" class="custom-control custom-checkbox mt-1" style="display:none">
@@ -230,7 +222,7 @@
 
 		{% for ( var i = 0; i < options.length; i++ ) { %}
 
-		<label class="btn  btn-outline-primary  {%if (options[i].checked) { %}active{% } %}" for="{%=key%}{%=i%} " title="{%=options[i].title%}">
+		<label class="btn btn-light  {%if (options[i].checked) { %}active{% } %}" for="{%=key%}{%=i%} " title="{%=options[i].title%}">
 		  <input name="{%=key%}" class="custom-control-input" type="radio" value="{%=options[i].value%}" id="{%=key%}{%=i%}" {%if (options[i].checked) { %}checked="{%=options[i].checked%}"{% } %}>
 		  {%if (options[i].icon) { %}<i class="{%=options[i].icon%}"></i>{% } %}
 		  {%=options[i].text%}
@@ -287,7 +279,7 @@
 				<input name="{%=key%}_{%=i%}" type="text" class="form-control" value="{%=options[i].text%}"/>
 				<div class="input-group-append">
 					<button class="input-group-text btn btn-sm btn-danger">
-						<i class="la la-trash la-lg"></i>
+						<i class="ion-trash-a"></i>
 					</button>
 				</div>
 			  </div>
@@ -300,7 +292,7 @@
 		<div class="col-12">
 
 			<button class="btn btn-sm btn-outline-primary">
-				<i class="la la-trash la-lg"></i> Add new
+				<i class="ion-trash-a"></i> Add new
 			</button>
 
 		</div>
@@ -383,7 +375,7 @@
 		<div class="col-12">
 
 			<button class="btn btn-sm btn-outline-light text-danger">
-				<i class="la la-trash la-lg"></i> Remove
+				<i class="ion-trash-a"></i> Remove
 			</button>
 
 		</div>
@@ -410,7 +402,7 @@
 		<div class="col-12">
 
 			<button class="btn btn-sm btn-outline-light text-danger">
-				<i class="la la-trash la-lg"></i> Remove
+				<i class="ion-trash-a"></i> Remove
 			</button>
 
 		</div>
@@ -458,7 +450,7 @@
 <script id="vvveb-input-button" type="text/html">
 	<div>
 		<button class="btn btn-sm btn-primary">
-			<i class="la  {% if (typeof icon !== 'undefined') { %} {%=icon%} {% } else { %} la-plus {% } %} la-lg"></i> {%=text%}
+			<i class="ion-trash-a"></i> {%=text%}
 		</button>
 	</div>
 </script>

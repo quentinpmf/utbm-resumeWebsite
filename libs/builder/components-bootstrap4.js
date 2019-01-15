@@ -595,7 +595,7 @@ Vvveb.Components.extend("_base", "_base", {
         inputtype: CssUnitInput
     }, {
         name: "Left",
-        key: "margin-Left",
+        key: "margin-left",
 		htmlAttr: "style",
         sort: base_sort++,
         col:6,
@@ -638,7 +638,7 @@ Vvveb.Components.extend("_base", "_base", {
         inputtype: CssUnitInput
     }, {
         name: "Left",
-        key: "padding-Left",
+        key: "padding-left",
 		htmlAttr: "style",
         sort: base_sort++,
         col:6,
@@ -862,8 +862,7 @@ Vvveb.Components.extend("_base", "html/heading", {
 	properties: [
 	{
         name: "Size",
-        key: "id",
-        htmlAttr: "id",
+        key: "size",
         inputtype: SelectInput,
         
         onChange: function(node, value) {
@@ -1640,7 +1639,7 @@ Vvveb.Components.extend("_base", "html/selectinput", {
         name: "",
         key: "addChild",
         inputtype: ButtonInput,
-        data: {text:"Add option"},
+        data: {text:"Add option", icon:"la-plus"},
         onChange: function(node)
         {
 			 $(node).append('<option value="value">Text</option>');
@@ -2050,7 +2049,7 @@ Vvveb.Components.add("html/gridrow", {
         name: "",
         key: "addChild",
         inputtype: ButtonInput,
-        data: {text:"Add column"},
+        data: {text:"Add column", icon:"la la-plus"},
         onChange: function(node)
         {
 			 $(node).append('<div class="col-3">Col-3</div>');
