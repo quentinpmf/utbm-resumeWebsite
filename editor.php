@@ -677,7 +677,8 @@ $(document).ready(function()
 		{name:"template1", title:"Template Développeur",  url: "templates/CV/template1.html"},
 		{name:"template2", title:"Template Développeur 2",  url: "templates/CV/template2.html"},
         {name:"template3", title:"Template Plombier",  url: "templates/CV/template3.html"},
-        {name:"template4", title:"Template 4",  url: "templates/CV/template4.html"}
+        {name:"template4", title:"Template 4",  url: "templates/CV/template4.html"},
+        {name:"template5", title:"Template 5",  url: "templates/CV/template5.html"}
 	]);
 
 });
