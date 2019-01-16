@@ -156,24 +156,6 @@
             </div>
         </div>
     </div>
-    <!-- Special Description Area -->
-    <div class="special_description_area mt-150">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="special_description_img">
-                        <img src="assets/index/img/bg-img/special.png" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-5 ml-xl-auto">
-                    <div class="special_description_content">
-                        <h2>Nos propositions de designs</h2>
-                        <p>Nous vous proposons un certain nombre de modèles pour débuter la création de votre CV. Avec ces modèles, le design sera déja fait et vous pourrez insérer vos données à l'intérieur et si besoin, personnaliser encore plus ce design</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 <!-- ***** Special Area End ***** -->
 
@@ -221,159 +203,6 @@
 </section>
 <!-- ***** Awesome Features End ***** -->
 
-<!-- ***** App Screenshots Area Start ***** -->
-<section class="app-screenshots-area section_padding_100_70 clearfix" id="screenshot">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <!-- Heading Text  -->
-                <div class="section-heading">
-                    <h2>App Screenshots</h2>
-                    <div class="line-shape"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <!-- App Screenshots Slides  -->
-                <div class="app_screenshots_slides owl-carousel">
-                    <div class="single-shot">
-                        <img src="assets/index/img/scr-img/app-1.jpg" alt="">
-                    </div>
-                    <div class="single-shot">
-                        <img src="assets/index/img/scr-img/app-2.jpg" alt="">
-                    </div>
-                    <div class="single-shot">
-                        <img src="assets/index/img/scr-img/app-3.jpg" alt="">
-                    </div>
-                    <div class="single-shot">
-                        <img src="assets/index/img/scr-img/app-4.jpg" alt="">
-                    </div>
-                    <div class="single-shot">
-                        <img src="assets/index/img/scr-img/app-5.jpg" alt="">
-                    </div>
-                    <div class="single-shot">
-                        <img src="assets/index/img/scr-img/app-3.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ***** App Screenshots Area End *****====== -->
-
-<!-- ***** Client Feedback Area Start ***** -->
-<section class="clients-feedback-area bg-white section_padding_100 clearfix" id="testimonials">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10">
-                <div class="slider slider-for">
-                    <!-- Client Feedback Text  -->
-                    <div class="client-feedback-text text-center">
-                        <div class="client">
-                            <i class="fa fa-quote-left" aria-hidden="true"></i>
-                        </div>
-                        <div class="client-description text-center">
-                            <p>“ I have been using it for a number of years. I use Colorlib for usability testing. It's great for taking images and making clickable image prototypes that do the job and save me the coding time and just the general hassle of hosting. ”</p>
-                        </div>
-                        <div class="star-icon text-center">
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                        </div>
-                        <div class="client-name text-center">
-                            <h5>Aigars Silkalns</h5>
-                            <p>Ceo Colorlib</p>
-                        </div>
-                    </div>
-                    <!-- Client Feedback Text  -->
-                    <div class="client-feedback-text text-center">
-                        <div class="client">
-                            <i class="fa fa-quote-left" aria-hidden="true"></i>
-                        </div>
-                        <div class="client-description text-center">
-                            <p>“ I use Colorlib for usability testing. It's great for taking images and making clickable image prototypes that do the job and save me the coding time and just the general hassle of hosting. ”</p>
-                        </div>
-                        <div class="star-icon text-center">
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                        </div>
-                        <div class="client-name text-center">
-                            <h5>Jennifer</h5>
-                            <p>Developer</p>
-                        </div>
-                    </div>
-                    <!-- Client Feedback Text  -->
-                    <div class="client-feedback-text text-center">
-                        <div class="client">
-                            <i class="fa fa-quote-left" aria-hidden="true"></i>
-                        </div>
-                        <div class="client-description text-center">
-                            <p>“ I have been using it for a number of years. I use Colorlib for usability testing. It's great for taking images and making clickable image prototypes that do the job.”</p>
-                        </div>
-                        <div class="star-icon text-center">
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                        </div>
-                        <div class="client-name text-center">
-                            <h5>Helen</h5>
-                            <p>Marketer</p>
-                        </div>
-                    </div>
-                    <!-- Client Feedback Text  -->
-                    <div class="client-feedback-text text-center">
-                        <div class="client">
-                            <i class="fa fa-quote-left" aria-hidden="true"></i>
-                        </div>
-                        <div class="client-description text-center">
-                            <p>“ I have been using it for a number of years. I use Colorlib for usability testing. It's great for taking images and making clickable image prototypes that do the job and save me the coding time and just the general hassle of hosting. ”</p>
-                        </div>
-                        <div class="star-icon text-center">
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                        </div>
-                        <div class="client-name text-center">
-                            <h5>Henry smith</h5>
-                            <p>Developer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Client Thumbnail Area -->
-            <div class="col-12 col-md-6 col-lg-5">
-                <div class="slider slider-nav">
-                    <div class="client-thumbnail">
-                        <img src="assets/index/img/bg-img/client-3.jpg" alt="">
-                    </div>
-                    <div class="client-thumbnail">
-                        <img src="assets/index/img/bg-img/client-2.jpg" alt="">
-                    </div>
-                    <div class="client-thumbnail">
-                        <img src="assets/index/img/bg-img/client-1.jpg" alt="">
-                    </div>
-                    <div class="client-thumbnail">
-                        <img src="assets/index/img/bg-img/client-2.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ***** Client Feedback Area End ***** -->
-
 <!-- ***** CTA Area Start ***** -->
 <section class="our-monthly-membership section_padding_50 clearfix">
     <div class="container">
@@ -386,7 +215,7 @@
             </div>
             <div class="col-md-4">
                 <div class="get-started-button wow bounceInDown" data-wow-delay="0.5s">
-                    <a href="#">Se lancer</a>
+                    <a href="login/register.php">Se lancer</a>
                 </div>
             </div>
         </div>
@@ -483,19 +312,19 @@
                                 <!-- Single Input Area Start -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Votre nom *" required>
                                     </div>
                                 </div>
                                 <!-- Single Input Area Start -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Your E-mail" required>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Votre email *" required>
                                     </div>
                                 </div>
                                 <!-- Single Input Area Start -->
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Your Message *" required></textarea>
+                                        <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Votre message *" required></textarea>
                                     </div>
                                 </div>
                                 <!-- Single Input Area Start -->
